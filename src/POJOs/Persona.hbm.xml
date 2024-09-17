@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-sep-2024 21:46:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Persona" table="persona" catalog="escuelaguate" optimistic-lock="version">
+        <id name="idPersona" type="int">
+            <column name="id_persona" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="escuela" class="POJOs.Escuela" fetch="select">
+            <column name="codigo_escuela" length="15" />
+        </many-to-one>
+        <property name="cui" type="string">
+            <column name="cui" length="13" not-null="true" unique="true" />
+        </property>
+        <property name="codigoPersonal" type="string">
+            <column name="codigo_personal" length="10" not-null="true" unique="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" not-null="true" />
+        </property>
+        <property name="fechaNacimiento" type="date">
+            <column name="fecha_nacimiento" length="10" not-null="true" />
+        </property>
+        <property name="nacionalidad" type="string">
+            <column name="nacionalidad" length="50" not-null="true" />
+        </property>
+        <property name="genero" type="string">
+            <column name="genero" length="9" not-null="true" />
+        </property>
+        <property name="rol" type="string">
+            <column name="rol" length="8" not-null="true" />
+        </property>
+        <property name="borradoLogico" type="java.lang.Boolean">
+            <column name="borrado_logico" />
+        </property>
+        <set name="cursodocentes" table="cursodocente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_persona" />
+            </key>
+            <one-to-many class="POJOs.Cursodocente" />
+        </set>
+    </class>
+</hibernate-mapping>

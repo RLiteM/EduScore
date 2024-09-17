@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-sep-2024 21:46:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Unidad" table="unidad" catalog="escuelaguate" optimistic-lock="version">
+        <id name="idUnidad" type="int">
+            <column name="id_unidad" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="curso" class="POJOs.Curso" fetch="select">
+            <column name="id_curso" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="10" not-null="true" />
+        </property>
+        <property name="borradoLogico" type="java.lang.Boolean">
+            <column name="borrado_logico" />
+        </property>
+        <set name="actividads" table="actividad" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_unidad" />
+            </key>
+            <one-to-many class="POJOs.Actividad" />
+        </set>
+        <set name="calificacions" table="calificacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_unidad" />
+            </key>
+            <one-to-many class="POJOs.Calificacion" />
+        </set>
+    </class>
+</hibernate-mapping>

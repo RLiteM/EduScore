@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-sep-2024 21:46:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Escuela" table="escuela" catalog="escuelaguate" optimistic-lock="version">
+        <id name="codigoEscuela" type="string">
+            <column name="codigo_escuela" length="15" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="20" not-null="true" />
+        </property>
+        <property name="borradoLogico" type="java.lang.Boolean">
+            <column name="borrado_logico" />
+        </property>
+        <set name="personas" table="persona" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_escuela" length="15" />
+            </key>
+            <one-to-many class="POJOs.Persona" />
+        </set>
+        <set name="grados" table="grado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_escuela" length="15" />
+            </key>
+            <one-to-many class="POJOs.Grado" />
+        </set>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_escuela" length="15" />
+            </key>
+            <one-to-many class="POJOs.Usuario" />
+        </set>
+        <set name="cursos" table="curso" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_escuela" length="15" />
+            </key>
+            <one-to-many class="POJOs.Curso" />
+        </set>
+        <set name="seccions" table="seccion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_escuela" length="15" />
+            </key>
+            <one-to-many class="POJOs.Seccion" />
+        </set>
+    </class>
+</hibernate-mapping>
