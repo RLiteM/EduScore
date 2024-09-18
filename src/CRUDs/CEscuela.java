@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package CRUDs;
+
 import POJOs.Escuela;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -18,7 +19,7 @@ import org.hibernate.criterion.Restrictions;
  */
 public class CEscuela {
 
-    public static List<Escuela>universo() {
+    public static List<Escuela> universo() {
 
         Session session = HibernateUtil.HibernateUtil.getSessionFactory().getCurrentSession();
         List<Escuela> lista = null;
@@ -51,7 +52,7 @@ public class CEscuela {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            if (insert==null) {
+            if (insert == null) {
                 insert = new Escuela();
                 insert.setCodigoEscuela(codigoEscuela);
                 insert.setNombre(nombre);
@@ -64,8 +65,36 @@ public class CEscuela {
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
-        } finally{
-        session.clear();
+        } finally {
+            session.close();
+        }
+        return flag;
+    }
+    // este es nuestro metodo actualizar, 
+        public static boolean actualizar(String codigoEscuela, String nombre, String direccion, String telefono) {
+        boolean flag = false;
+        Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Escuela.class);
+        criteria.add(Restrictions.eq("codigoEscuela", codigoEscuela)); // corrigir datos escuela
+        Escuela insert = (Escuela) criteria.uniqueResult(); // obtener la persona existente 
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            if (insert != null) {
+                insert.setNombre(nombre);
+                insert.setDireccion(direccion);
+                insert.setTelefono(telefono);
+                session.update(insert);
+                flag = true;
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                 transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
         return flag;
     }
