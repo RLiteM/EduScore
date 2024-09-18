@@ -19,6 +19,7 @@ public class EduScore {
         System.out.println("HOla mundo");
         
         System.out.println("holiiiiii");
+        System.out.println("Hola sindi");
     }
     
 }
