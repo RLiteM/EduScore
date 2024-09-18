@@ -18,7 +18,7 @@ public class EduScore {
         // TODO code application logic here
         System.out.println("HOla mundo");
         
-        System.out.println("insertar" + CRUDs.CEscuela.actualizar("13-08-0500-45", "INMBAT", "Soloma", "33191522"));
+        System.out.println("holiiiiii");
     }
     
 }
