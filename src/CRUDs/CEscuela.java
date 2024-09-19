@@ -70,8 +70,9 @@ public class CEscuela {
         }
         return flag;
     }
+
     // este es nuestro metodo actualizar, 
-        public static boolean actualizar(String codigoEscuela, String nombre, String direccion, String telefono) {
+    public static boolean actualizar(String codigoEscuela, String nombre, String direccion, String telefono) {
         boolean flag = false;
         Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Escuela.class);
@@ -90,7 +91,65 @@ public class CEscuela {
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
-                 transaction.rollback();
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return flag;
+    }
+
+    public static boolean anular(String codigoEscuela) {
+        boolean flag = false;
+        Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Escuela.class);
+        criteria.add(Restrictions.eq("codigoEscuela", codigoEscuela)); // corrigir datos escuela
+        Escuela anular = (Escuela) criteria.uniqueResult(); // obtener la persona existente 
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            if (anular != null) {
+                anular.setBorradoLogico(false);
+                session.update(anular);
+                flag = true;
+            } else {
+                System.out.println("No se encontro el codigo de la escuela " + codigoEscuela);
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return flag;
+    }
+
+    public static boolean reactivar(String codigoEscuela) {
+        boolean flag = false;
+        Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Escuela.class);
+        criteria.add(Restrictions.eq("codigoEscuela", codigoEscuela)); // buscar la escuela por código
+        Escuela reactivar = (Escuela) criteria.uniqueResult(); // obtener la escuela existente
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            if (reactivar != null && !reactivar.getBorradoLogico()) { // verificar si está anulada
+                reactivar.setBorradoLogico(true); // reactivar la escuela
+                session.update(reactivar);
+                flag = true;
+            } else if (reactivar == null) {
+                System.out.println("No se encontró la escuela con el código: " + codigoEscuela);
+            } else {
+                System.out.println("La escuela ya está activa.");
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
             }
             e.printStackTrace();
         } finally {
