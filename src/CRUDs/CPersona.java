@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package CRUDs;
+import POJOs.Escuela;
 import POJOs.Persona;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -47,73 +50,111 @@ public class CPersona {
         return lista;
     }
 
-    public static boolean crear(String cui, String codigoPersonal, String nombre, String apellido, String fechaNacimiento, String nacionalidad, String genero, String rol, String codigoEscuela) {
-        boolean flag = false;
-        Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Persona.class);
-        criteria.add(Restrictions.eq("cui", cui));
-        criteria.add(Restrictions.eq("borradoLogico", true));
-        Persona insert = (Persona) criteria.uniqueResult();
-        Transaction transaction = null;
-        try {
-            transaction = session.beginTransaction();
-            if (insert == null) {
-                insert = new Persona();
-                insert.setCui(cui);
-                insert.setCodigoPersonal(codigoPersonal);
-                insert.setNombre(nombre);
-                insert.setApellido(apellido);
-                insert.setFechaNacimiento(fechaNacimiento);
-                insert.setNacionalidad(nacionalidad);
-                insert.setGenero(genero);
-                insert.setRol(rol);
-                insert.setCodigoEscuela(codigoEscuela);
-                insert.setBorradoLogico(true);
-                session.save(insert);
-                flag = true;
+public static boolean crear(String cui, String codigoPersonal, String nombre, String apellido, String fechaNacimiento, String nacionalidad, String genero, String rol, String codigoEscuela) {
+    boolean flag = false;
+    Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
+    Criteria criteria = session.createCriteria(Persona.class);
+    criteria.add(Restrictions.eq("cui", cui));
+    criteria.add(Restrictions.eq("borradoLogico", true));
+    Persona insert = (Persona) criteria.uniqueResult();
+    Transaction transaction = null;
+
+    try {
+        transaction = session.beginTransaction();
+        if (insert == null) {
+            insert = new Persona();
+            insert.setCui(cui);
+            insert.setCodigoPersonal(codigoPersonal);
+            insert.setNombre(nombre);
+            insert.setApellido(apellido);
+
+            // Convertir String a Date
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            Date fechaNac = formatter.parse(fechaNacimiento);
+            insert.setFechaNacimiento(fechaNac);  // Alonzo en nuestra base de datos, es de tipo date no string
+
+            insert.setNacionalidad(nacionalidad);
+            insert.setGenero(genero);
+            insert.setRol(rol);
+
+            // Aquí obtenemos la Escuela por su código
+            Criteria escuelaCriteria = session.createCriteria(Escuela.class);
+            escuelaCriteria.add(Restrictions.eq("codigoEscuela", codigoEscuela));
+            Escuela escuela = (Escuela) escuelaCriteria.uniqueResult();  // Buscar la escuela por su código
+
+            if (escuela != null) {
+                insert.setEscuela(escuela);  // Asignar la escuela
+            } else {
+                System.out.println("Escuela no encontrada.");
             }
-            transaction.commit();
-        } catch (Exception e) {
-            transaction.rollback();
-        } finally {
-            session.close();
+
+            insert.setBorradoLogico(true);
+            session.save(insert);
+            flag = true;
         }
-        return flag;
+        transaction.commit();
+    } catch (Exception e) {
+        transaction.rollback();
+        e.printStackTrace();
+    } finally {
+        session.close();
     }
+    return flag;
+}
+
     // este es nuestro metodo actualizar, 
-       public static boolean actualizar(int idPersona, String cui, String codigoPersonal, String nombre, String apellido, String fechaNacimiento, String nacionalidad, String genero, String rol, String codigoEscuela) {
-        boolean flag = false;
-        Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Persona.class);
-        criteria.add(Restrictions.eq("idPersona", idPersona)); // corrigir datos escuela
-        Persona insert = (Persona) criteria.uniqueResult(); // obtener la persona existente 
-        Transaction transaction = null;
-        try {
-            transaction = session.beginTransaction();
-            if (insert != null) {
-                insert.setCui(cui);
-                insert.setCodigoPersonal(codigoPersonal);
-                insert.setNombre(nombre);
-                insert.setApellido(apellido);
-                insert.setFechaNacimiento(fechaNacimiento);
-                insert.setNacionalidad(nacionalidad);
-                insert.setGenero(genero);
-                insert.setRol(rol);
-                insert.setcodigoEscuela(codigoEscuela);
-                insert.setBorradoLogico(true);
-                flag = true;
+public static boolean actualizar( String cui, String codigoPersonal, String nombre, String apellido, String fechaNacimiento, String nacionalidad, String genero, String rol, String codigoEscuela) {
+    boolean flag = false;
+    Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
+    Criteria criteria = session.createCriteria(Persona.class);
+    criteria.add(Restrictions.eq("cui", cui)); // Buscar la persona por cui
+    Persona insert = (Persona) criteria.uniqueResult(); // obtener la persona existente 
+    Transaction transaction = null;
+
+    try {
+        transaction = session.beginTransaction();
+        if (insert != null) {
+            insert.setCui(cui);
+            insert.setCodigoPersonal(codigoPersonal);
+            insert.setNombre(nombre);
+            insert.setApellido(apellido);
+
+            // Convertir String a Date
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            Date fechaNac = formatter.parse(fechaNacimiento);
+            insert.setFechaNacimiento(fechaNac);  // alonzo usar el objeto Date
+
+            insert.setNacionalidad(nacionalidad);
+            insert.setGenero(genero);
+            insert.setRol(rol);
+
+            // Buscar la nueva escuela por su código
+            Criteria escuelaCriteria = session.createCriteria(Escuela.class);
+            escuelaCriteria.add(Restrictions.eq("codigoEscuela", codigoEscuela));
+            Escuela escuela = (Escuela) escuelaCriteria.uniqueResult();
+
+            if (escuela != null) {
+                insert.setEscuela(escuela);  // Asignar la escuela encontrada
+            } else {
+                System.out.println("Escuela no encontrada.");
             }
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                 transaction.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
+
+            insert.setBorradoLogico(true);
+            flag = true;
         }
-        return flag;
+        transaction.commit();
+    } catch (Exception e) {
+        if (transaction != null) {
+            transaction.rollback();
+        }
+        e.printStackTrace();
+    } finally {
+        session.close();
     }
+    return flag;
+}
+
+
 
     
 }
