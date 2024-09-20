@@ -1,0 +1,34 @@
+.mainFxmlClass {
+    -fx-background-image: url(IMAGENES/FONDO_LOGIN.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+}
+.button{
+    -fx-background-color: white;
+    -fx-background-radius: 20px;
+    -fx-padding: 4;
+}
+.button:hover{
+    -fx-background-color: rgba(255,255,255,0.43);
+}
+#title{
+    -fx-font-family: "Segoe Print";
+    -fx-font-size: 30px;
+    -fx-text-fill: white;
+    
+}
+#textoinicio{
+    -fx-font-family: "Segoe Print";
+    -fx-font-size: 15px;
+    -fx-text-fill: black;
+}
+#user{
+    -fx-font-family: "Segoe Print";
+    -fx-font-size: 15px;
+    -fx-text-fill: black;
+}
+#pass{
+    -fx-font-family: "Segoe Print";
+    -fx-font-size: 15px;
+    -fx-text-fill: black;
+}

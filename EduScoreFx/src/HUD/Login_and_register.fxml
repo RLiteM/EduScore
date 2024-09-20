@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HUD.Login_and_registerController">
+   <children>
+      <Button fx:id="iniciar" layoutX="82.0" layoutY="433.0" mnemonicParsing="false" stylesheets="@../StylesRandom/Style_button.css" text="Ingresar" textAlignment="CENTER">
+         <font>
+            <Font name="Segoe Print" size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="title" layoutX="123.0" layoutY="38.0" text="¡Bienvenido!" />
+      <TextField fx:id="usuario" layoutX="148.0" layoutY="227.0" prefHeight="34.0" prefWidth="235.0" />
+      <Label fx:id="textoinicio" layoutX="65.0" layoutY="123.0" text="Por favor inicia sesión para continuar..." />
+      <Label fx:id="user" layoutX="63.0" layoutY="230.0" text="USUARIO:" />
+      <Label fx:id="pass" layoutX="24.0" layoutY="316.0" text="CONTRASEÑA:" />
+      <TextField fx:id="contrasena" layoutX="148.0" layoutY="313.0" prefHeight="34.0" prefWidth="235.0" />
+      <Button fx:id="inser" layoutX="239.0" layoutY="433.0" mnemonicParsing="false" onAction="#Insertar" stylesheets="@../StylesRandom/Style_button.css" text="Insertar" textAlignment="CENTER">
+         <font>
+            <Font name="Segoe Print" size="18.0" />
+         </font>
+      </Button>
+   </children>
+   <stylesheets>
+      <URL value="@login_and_register.css" />
+      <URL value="@../StylesRandom/Style_button.css" />
+   </stylesheets>
+</AnchorPane>
