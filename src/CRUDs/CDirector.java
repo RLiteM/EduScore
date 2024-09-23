@@ -5,7 +5,13 @@
  */
 package CRUDs;
 
-import POJOs.Administrador;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import POJOs.Director;
 import POJOs.Escuela;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -18,21 +24,23 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author IngeMayk
  */
-public class CEscuela {
+public class CDirector {
 
-    public static List<Escuela> universo() {
+    public static List<Director> universo() {
 
         Session session = HibernateUtil.HibernateUtil.getSessionFactory().getCurrentSession();
-        List<Escuela> lista = null;
+        List<Director> lista = null;
         try {
             session.beginTransaction();
-            Criteria criteria = session.createCriteria(Escuela.class);
+            Criteria criteria = session.createCriteria(Director.class);
             criteria.add(Restrictions.eq("borradoLogico", true));
             criteria.setProjection(Projections.projectionList()
-                    .add(Projections.property("codigoEscuela"))
+                    .add(Projections.property("idDirector"))
+                    .add(Projections.property("escuela"))
                     .add(Projections.property("nombre"))
-                    .add(Projections.property("direccion"))
-                    .add(Projections.property("administrador"))
+                    .add(Projections.property("apellido"))
+                    .add(Projections.property("telefono"))
+                    .add(Projections.property("contrasenia"))
             );
 
         } catch (Exception e) {
@@ -42,31 +50,35 @@ public class CEscuela {
         }
         return lista;
     }
-public static boolean crear(String codigoEscuela, String nombre, String direccion, int idAdministrador) {
+
+public static boolean crear( String codigoEscuela, String nombre, String apellido, String telefono, String contrasenia) {
     boolean flag = false;
     Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
-    Criteria criteria = session.createCriteria(Escuela.class);
-    criteria.add(Restrictions.eq("codigoEscuela", codigoEscuela));
+    Criteria criteria = session.createCriteria(Director.class);
     criteria.add(Restrictions.eq("borradoLogico", true));
-    Escuela insert = (Escuela) criteria.uniqueResult();
+    Director insert = (Director) criteria.uniqueResult();
     Transaction transaction = null;
     try {
         transaction = session.beginTransaction();
         if (insert == null) {
-            insert = new Escuela();
-            insert.setCodigoEscuela(codigoEscuela);
-            insert.setNombre(nombre);
-            insert.setDireccion(direccion);
-            
-            // Obtener el objeto Administrador
-            Administrador administrador = (Administrador) session.get(Administrador.class, idAdministrador);
-            if (administrador == null) {
-                throw new RuntimeException("El administrador con ID " + idAdministrador + " no existe.");
+            insert = new Director();
+            // Obtener el objeto Escuela
+            Escuela escuela = (Escuela) session.get(Escuela.class, codigoEscuela);
+            if (escuela == null) {
+                throw new RuntimeException("La escuela con código " + codigoEscuela + " no existe.");
             }
+
+            // Asignar la escuela al director
+            insert.setEscuela(escuela);
             
-            // Asignar el administrador a la escuela
-            insert.setAdministrador(administrador);
+            // Asignar los demás atributos del director
+            insert.setNombre(nombre);
+            insert.setApellido(apellido);
+            insert.setTelefono(telefono);
+            insert.setContrasenia(contrasenia);
             insert.setBorradoLogico(true);
+
+            // Guardar el nuevo director
             session.save(insert);
             flag = true;
         }
@@ -82,35 +94,41 @@ public static boolean crear(String codigoEscuela, String nombre, String direccio
     return flag;
 }
 
+    
 
     // este es nuestro metodo actualizar, 
-public static boolean actualizar(String codigoEscuela, String nombre, String direccion, int idAdministrador) {
+  public static boolean actualizar(int idDirector, String codigoEscuela, String nombre, String apellido, String telefono, String contrasenia) {
     boolean flag = false;
     Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
-    Criteria criteria = session.createCriteria(Escuela.class);
-    criteria.add(Restrictions.eq("codigoEscuela", codigoEscuela)); // Buscar la escuela por código
-    Escuela insert = (Escuela) criteria.uniqueResult(); // Obtener la escuela existente 
+    Criteria criteria = session.createCriteria(Director.class);
+    criteria.add(Restrictions.eq("idDirector", idDirector)); // Buscar el director por su ID
+    Director actualizar = (Director) criteria.uniqueResult(); // Obtener el director existente
     Transaction transaction = null;
+    
     try {
         transaction = session.beginTransaction();
-        if (insert != null) {
-            // Actualizar nombre y dirección
-            insert.setNombre(nombre);
-            insert.setDireccion(direccion);
-            
-            // Obtener el objeto Administrador
-            Administrador administrador = (Administrador) session.get(Administrador.class, idAdministrador);
-            if (administrador == null) {
-                throw new RuntimeException("El administrador con ID " + idAdministrador + " no existe.");
+        
+        if (actualizar != null) {
+            // Obtener el objeto Escuela por su código
+            Escuela escuela = (Escuela) session.get(Escuela.class, codigoEscuela);
+            if (escuela == null) {
+                throw new RuntimeException("La escuela con código " + codigoEscuela + " no existe.");
             }
-            
-            // Asignar el administrador a la escuela
-            insert.setAdministrador(administrador);
-            
-            // Actualizar la escuela
-            session.update(insert);
+
+            // Asignar la escuela al director
+            actualizar.setEscuela(escuela);
+
+            // Actualizar otros atributos
+            actualizar.setNombre(nombre);
+            actualizar.setApellido(apellido);
+            actualizar.setTelefono(telefono);
+            actualizar.setContrasenia(contrasenia);
+
+            // Guardar los cambios en la base de datos
+            session.update(actualizar);
             flag = true;
         }
+        
         transaction.commit();
     } catch (Exception e) {
         if (transaction != null) {
@@ -124,12 +142,12 @@ public static boolean actualizar(String codigoEscuela, String nombre, String dir
 }
 
 
-    public static boolean anular(String codigoEscuela) {
+    public static boolean anular(int idDirector) {
         boolean flag = false;
         Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Escuela.class);
-        criteria.add(Restrictions.eq("codigoEscuela", codigoEscuela)); // corrigir datos escuela
-        Escuela anular = (Escuela) criteria.uniqueResult(); // obtener la persona existente 
+        Criteria criteria = session.createCriteria(Director.class);
+        criteria.add(Restrictions.eq("idDirector", idDirector)); // corrigir datos escuela
+        Director anular = (Director) criteria.uniqueResult(); // obtener la persona existente 
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -138,7 +156,7 @@ public static boolean actualizar(String codigoEscuela, String nombre, String dir
                 session.update(anular);
                 flag = true;
             } else {
-                System.out.println("No se encontro el codigo de la escuela " + codigoEscuela);
+                System.out.println("No se encontro el codigo del Director " + idDirector);
             }
             transaction.commit();
         } catch (Exception e) {
@@ -152,12 +170,12 @@ public static boolean actualizar(String codigoEscuela, String nombre, String dir
         return flag;
     }
 
-    public static boolean reactivar(String codigoEscuela) {
+    public static boolean reactivar(int idDirector) {
         boolean flag = false;
         Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Escuela.class);
-        criteria.add(Restrictions.eq("codigoEscuela", codigoEscuela)); // buscar la escuela por código
-        Escuela reactivar = (Escuela) criteria.uniqueResult(); // obtener la escuela existente
+        Criteria criteria = session.createCriteria(Director.class);
+        criteria.add(Restrictions.eq("idDirector", idDirector)); // buscar la escuela por código
+        Director reactivar = (Director) criteria.uniqueResult(); // obtener el Director existente
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -166,9 +184,9 @@ public static boolean actualizar(String codigoEscuela, String nombre, String dir
                 session.update(reactivar);
                 flag = true;
             } else if (reactivar == null) {
-                System.out.println("No se encontró la escuela con el código: " + codigoEscuela);
+                System.out.println("No se encontró el director con el código: " + idDirector);
             } else {
-                System.out.println("La escuela ya está activa.");
+                System.out.println("el Director ya está activo.");
             }
             transaction.commit();
         } catch (Exception e) {
@@ -183,3 +201,4 @@ public static boolean actualizar(String codigoEscuela, String nombre, String dir
     }
 
 }
+

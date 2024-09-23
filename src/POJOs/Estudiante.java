@@ -1,8 +1,7 @@
 package POJOs;
-// Generated 16-sep-2024 21:46:47 by Hibernate Tools 4.3.1
+// Generated 22-sep-2024 18:38:34 by Hibernate Tools 4.3.1
 
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,98 +11,68 @@ import java.util.Set;
 public class Estudiante  implements java.io.Serializable {
 
 
-     private int idEstudiante;
-     private String codigoPersonal;
-     private String cui;
-     private String apellidos;
-     private String nombres;
-     private Date fechaNacimiento;
-     private String genero;
-     private Date fechaCreacion;
+     private Integer idEstudiante;
+     private Seccion seccion;
+     private long cui;
+     private String codigoEstudiante;
+     private String nombreEstudiante;
      private Boolean borradoLogico;
-     private Set<Inscripcion> inscripcions = new HashSet<Inscripcion>(0);
+     private Set<Notas> notases = new HashSet<Notas>(0);
+     private Set<HistorialGraduacion> historialGraduacions = new HashSet<HistorialGraduacion>(0);
 
     public Estudiante() {
     }
 
 	
-    public Estudiante(int idEstudiante, String codigoPersonal, String cui, String apellidos, String nombres, Date fechaNacimiento, String genero) {
-        this.idEstudiante = idEstudiante;
-        this.codigoPersonal = codigoPersonal;
+    public Estudiante(long cui, String codigoEstudiante, String nombreEstudiante) {
         this.cui = cui;
-        this.apellidos = apellidos;
-        this.nombres = nombres;
-        this.fechaNacimiento = fechaNacimiento;
-        this.genero = genero;
+        this.codigoEstudiante = codigoEstudiante;
+        this.nombreEstudiante = nombreEstudiante;
     }
-    public Estudiante(int idEstudiante, String codigoPersonal, String cui, String apellidos, String nombres, Date fechaNacimiento, String genero, Date fechaCreacion, Boolean borradoLogico, Set<Inscripcion> inscripcions) {
-       this.idEstudiante = idEstudiante;
-       this.codigoPersonal = codigoPersonal;
+    public Estudiante(Seccion seccion, long cui, String codigoEstudiante, String nombreEstudiante, Boolean borradoLogico, Set<Notas> notases, Set<HistorialGraduacion> historialGraduacions) {
+       this.seccion = seccion;
        this.cui = cui;
-       this.apellidos = apellidos;
-       this.nombres = nombres;
-       this.fechaNacimiento = fechaNacimiento;
-       this.genero = genero;
-       this.fechaCreacion = fechaCreacion;
+       this.codigoEstudiante = codigoEstudiante;
+       this.nombreEstudiante = nombreEstudiante;
        this.borradoLogico = borradoLogico;
-       this.inscripcions = inscripcions;
+       this.notases = notases;
+       this.historialGraduacions = historialGraduacions;
     }
    
-    public int getIdEstudiante() {
+    public Integer getIdEstudiante() {
         return this.idEstudiante;
     }
     
-    public void setIdEstudiante(int idEstudiante) {
+    public void setIdEstudiante(Integer idEstudiante) {
         this.idEstudiante = idEstudiante;
     }
-    public String getCodigoPersonal() {
-        return this.codigoPersonal;
+    public Seccion getSeccion() {
+        return this.seccion;
     }
     
-    public void setCodigoPersonal(String codigoPersonal) {
-        this.codigoPersonal = codigoPersonal;
+    public void setSeccion(Seccion seccion) {
+        this.seccion = seccion;
     }
-    public String getCui() {
+    public long getCui() {
         return this.cui;
     }
     
-    public void setCui(String cui) {
+    public void setCui(long cui) {
         this.cui = cui;
     }
-    public String getApellidos() {
-        return this.apellidos;
+    public String getCodigoEstudiante() {
+        return this.codigoEstudiante;
     }
     
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setCodigoEstudiante(String codigoEstudiante) {
+        this.codigoEstudiante = codigoEstudiante;
     }
-    public String getNombres() {
-        return this.nombres;
-    }
-    
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-    public Date getFechaNacimiento() {
-        return this.fechaNacimiento;
+    public String getNombreEstudiante() {
+        return this.nombreEstudiante;
     }
     
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-    public String getGenero() {
-        return this.genero;
-    }
-    
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-    public Date getFechaCreacion() {
-        return this.fechaCreacion;
-    }
-    
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setNombreEstudiante(String nombreEstudiante) {
+        this.nombreEstudiante = nombreEstudiante;
     }
     public Boolean getBorradoLogico() {
         return this.borradoLogico;
@@ -112,12 +81,19 @@ public class Estudiante  implements java.io.Serializable {
     public void setBorradoLogico(Boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
-    public Set<Inscripcion> getInscripcions() {
-        return this.inscripcions;
+    public Set<Notas> getNotases() {
+        return this.notases;
     }
     
-    public void setInscripcions(Set<Inscripcion> inscripcions) {
-        this.inscripcions = inscripcions;
+    public void setNotases(Set<Notas> notases) {
+        this.notases = notases;
+    }
+    public Set<HistorialGraduacion> getHistorialGraduacions() {
+        return this.historialGraduacions;
+    }
+    
+    public void setHistorialGraduacions(Set<HistorialGraduacion> historialGraduacions) {
+        this.historialGraduacions = historialGraduacions;
     }
 
 

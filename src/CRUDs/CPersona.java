@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/*
 package CRUDs;
 
 import POJOs.Escuela;
-import POJOs.Persona;
+//import POJOs.Persona;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -20,8 +21,9 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author IngeMayk
  */
-public class CPersona {
 
+public class CPersona {
+/*
     public static List<Persona> universo() {
 
         Session session = HibernateUtil.HibernateUtil.getSessionFactory().getCurrentSession();
@@ -31,7 +33,6 @@ public class CPersona {
             Criteria criteria = session.createCriteria(Persona.class);
             criteria.add(Restrictions.eq("borradoLogico", true));
             criteria.setProjection(Projections.projectionList()
-                    .add(Projections.property("idPersona"))
                     .add(Projections.property("cui"))
                     .add(Projections.property("codigoPersonal"))
                     .add(Projections.property("nombre"))
@@ -57,7 +58,7 @@ public class CPersona {
         Criteria criteria = session.createCriteria(Persona.class);
         criteria.add(Restrictions.eq("cui", cui));
         criteria.add(Restrictions.eq("borradoLogico", true));
-        Persona insert = (Persona) criteria.uniqueResult();
+     //   Persona insert = (Persona) criteria.uniqueResult();
         Transaction transaction = null;
 
         try {
@@ -211,6 +212,7 @@ public class CPersona {
             session.close();
         }
         return flag;
-    }
 
+    }
+*/
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22-sep-2024 18:38:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Director" table="director" catalog="escuelaguate" optimistic-lock="version">
+        <id name="idDirector" type="int">
+            <column name="id_director" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="escuela" class="POJOs.Escuela" fetch="select">
+            <column name="codigo_escuela" length="50" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="100" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="100" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="15" not-null="true" />
+        </property>
+        <property name="contrasenia" type="string">
+            <column name="contrasenia" not-null="true" />
+        </property>
+        <property name="borradoLogico" type="java.lang.Boolean">
+            <column name="borrado_logico" />
+        </property>
+    </class>
+</hibernate-mapping>

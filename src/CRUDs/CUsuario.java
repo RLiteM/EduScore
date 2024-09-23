@@ -1,6 +1,7 @@
 package CRUDs;
 
-import POJOs.Usuario;
+import POJOs.Escuela;
+/*import POJOs.Usuario;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -12,16 +13,24 @@ import org.hibernate.criterion.Projections;
  * Clase para operaciones CRUD sobre la entidad Usuario
  */
 public class CUsuario {
+    /*
 
     // Método para obtener los usuarios activos (no borrados lógicamente)
-    public static List<Usuario> obtenerUsuariosActivos() {
+    public static List<Usuario> universo() {
         Session session = HibernateUtil.HibernateUtil.getSessionFactory().getCurrentSession();
         List<Usuario> lista = null;
         try {
             session.beginTransaction();
             Criteria criteria = session.createCriteria(Usuario.class);
-            criteria.add(Restrictions.eq("borradoLogico", false)); // Solo usuarios no eliminados
-            lista = criteria.list();
+            criteria.add(Restrictions.eq("borradoLogico", true)); // Solo usuarios no eliminados
+            criteria.setProjection(Projections.projectionList()
+                    .add(Projections.property("idUsuario"))
+                    .add(Projections.property("nombreUsuario"))
+                    .add(Projections.property("contrasena"))
+                    .add(Projections.property("rol"))
+                    .add(Projections.property("escuela"))
+                    .add(Projections.property("rol"))
+            );
         } catch (Exception e) {
             System.out.println("Error al obtener usuarios: " + e);
         } finally {
@@ -31,22 +40,29 @@ public class CUsuario {
     }
 
     // Método para crear un usuario
-    public static boolean crearUsuario(int idUsuario, String nombreUsuario, String contrasena, String rol, Boolean borradoLogico) {
+    public static boolean crearUsuario(String nombreUsuario, String contrasena, String rol, String codigoEscuela, String codigoCurso) {
         boolean flag = false;
         Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Usuario.class);
         criteria.add(Restrictions.eq("nombreUsuario", nombreUsuario));
+        criteria.add(Restrictions.eq("borradoLogico", true));
         Usuario insert = (Usuario) criteria.uniqueResult(); // Verificar si ya existe el usuario
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             if (insert == null) {
                 insert = new Usuario();
-                insert.setIdUsuario(idUsuario);
                 insert.setNombreUsuario(nombreUsuario);
                 insert.setContrasena(contrasena);
                 insert.setRol(rol);
-                insert.setBorradoLogico(borradoLogico != null ? borradoLogico : false);
+                  // Aquí obtenemos la Escuela por su código
+                Criteria escuelaCriteria = session.createCriteria(Escuela.class);
+                escuelaCriteria.add(Restrictions.eq("codigoEscuela", codigoEscuela));
+                Escuela escuela = (Escuela) escuelaCriteria.uniqueResult();  // Buscar la escuela por su código
+
+                
+                insert.setRol(rol);
+                insert.setBorradoLogico(true);
                 session.save(insert);
                 flag = true;
             } else {
@@ -54,7 +70,9 @@ public class CUsuario {
             }
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
         } finally {
             session.close();
@@ -83,7 +101,9 @@ public class CUsuario {
             }
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
         } finally {
             session.close();
@@ -110,7 +130,9 @@ public class CUsuario {
             }
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
         } finally {
             session.close();
@@ -139,11 +161,14 @@ public class CUsuario {
             }
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
         } finally {
             session.close();
         }
         return flag;
     }
+*/
 }

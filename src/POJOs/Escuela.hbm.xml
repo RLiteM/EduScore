@@ -1,54 +1,36 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16-sep-2024 21:46:47 by Hibernate Tools 4.3.1 -->
+<!-- Generated 22-sep-2024 18:38:35 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOs.Escuela" table="escuela" catalog="escuelaguate" optimistic-lock="version">
         <id name="codigoEscuela" type="string">
-            <column name="codigo_escuela" length="15" />
+            <column name="codigo_escuela" length="50" />
             <generator class="assigned" />
         </id>
+        <many-to-one name="administrador" class="POJOs.Administrador" fetch="select">
+            <column name="id_administrador" />
+        </many-to-one>
         <property name="nombre" type="string">
             <column name="nombre" not-null="true" />
         </property>
         <property name="direccion" type="string">
-            <column name="direccion" not-null="true" />
-        </property>
-        <property name="telefono" type="string">
-            <column name="telefono" length="20" not-null="true" />
+            <column name="direccion" />
         </property>
         <property name="borradoLogico" type="java.lang.Boolean">
             <column name="borrado_logico" />
         </property>
-        <set name="personas" table="persona" inverse="true" lazy="true" fetch="select">
+        <set name="cicloEscolars" table="ciclo_escolar" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="codigo_escuela" length="15" />
+                <column name="codigo_escuela" length="50" />
             </key>
-            <one-to-many class="POJOs.Persona" />
+            <one-to-many class="POJOs.CicloEscolar" />
         </set>
-        <set name="grados" table="grado" inverse="true" lazy="true" fetch="select">
+        <set name="directors" table="director" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="codigo_escuela" length="15" />
+                <column name="codigo_escuela" length="50" />
             </key>
-            <one-to-many class="POJOs.Grado" />
-        </set>
-        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="codigo_escuela" length="15" />
-            </key>
-            <one-to-many class="POJOs.Usuario" />
-        </set>
-        <set name="cursos" table="curso" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="codigo_escuela" length="15" />
-            </key>
-            <one-to-many class="POJOs.Curso" />
-        </set>
-        <set name="seccions" table="seccion" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="codigo_escuela" length="15" />
-            </key>
-            <one-to-many class="POJOs.Seccion" />
+            <one-to-many class="POJOs.Director" />
         </set>
     </class>
 </hibernate-mapping>

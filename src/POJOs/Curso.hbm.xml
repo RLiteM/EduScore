@@ -1,36 +1,33 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16-sep-2024 21:46:47 by Hibernate Tools 4.3.1 -->
+<!-- Generated 22-sep-2024 18:38:35 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOs.Curso" table="curso" catalog="escuelaguate" optimistic-lock="version">
         <id name="idCurso" type="int">
             <column name="id_curso" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="escuela" class="POJOs.Escuela" fetch="select">
-            <column name="codigo_escuela" length="15" />
-        </many-to-one>
         <many-to-one name="grado" class="POJOs.Grado" fetch="select">
             <column name="id_grado" />
         </many-to-one>
-        <property name="nombre" type="string">
-            <column name="nombre" not-null="true" />
+        <property name="nombreCurso" type="string">
+            <column name="nombre_curso" not-null="true" />
         </property>
         <property name="borradoLogico" type="java.lang.Boolean">
             <column name="borrado_logico" />
         </property>
-        <set name="unidads" table="unidad" inverse="true" lazy="true" fetch="select">
+        <set name="actividads" table="actividad" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_curso" />
             </key>
-            <one-to-many class="POJOs.Unidad" />
+            <one-to-many class="POJOs.Actividad" />
         </set>
-        <set name="cursodocentes" table="cursodocente" inverse="true" lazy="true" fetch="select">
+        <set name="asignacionDocenteCursos" table="asignacion_docente_curso" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_curso" />
             </key>
-            <one-to-many class="POJOs.Cursodocente" />
+            <one-to-many class="POJOs.AsignacionDocenteCurso" />
         </set>
     </class>
 </hibernate-mapping>

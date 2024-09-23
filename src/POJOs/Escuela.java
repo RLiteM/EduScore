@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 16-sep-2024 21:46:47 by Hibernate Tools 4.3.1
+// Generated 22-sep-2024 18:38:34 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,37 +12,29 @@ public class Escuela  implements java.io.Serializable {
 
 
      private String codigoEscuela;
+     private Administrador administrador;
      private String nombre;
      private String direccion;
-     private String telefono;
      private Boolean borradoLogico;
-     private Set<Persona> personas = new HashSet<Persona>(0);
-     private Set<Grado> grados = new HashSet<Grado>(0);
-     private Set<Usuario> usuarios = new HashSet<Usuario>(0);
-     private Set<Curso> cursos = new HashSet<Curso>(0);
-     private Set<Seccion> seccions = new HashSet<Seccion>(0);
+     private Set<CicloEscolar> cicloEscolars = new HashSet<CicloEscolar>(0);
+     private Set<Director> directors = new HashSet<Director>(0);
 
     public Escuela() {
     }
 
 	
-    public Escuela(String codigoEscuela, String nombre, String direccion, String telefono) {
+    public Escuela(String codigoEscuela, String nombre) {
         this.codigoEscuela = codigoEscuela;
         this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
     }
-    public Escuela(String codigoEscuela, String nombre, String direccion, String telefono, Boolean borradoLogico, Set<Persona> personas, Set<Grado> grados, Set<Usuario> usuarios, Set<Curso> cursos, Set<Seccion> seccions) {
+    public Escuela(String codigoEscuela, Administrador administrador, String nombre, String direccion, Boolean borradoLogico, Set<CicloEscolar> cicloEscolars, Set<Director> directors) {
        this.codigoEscuela = codigoEscuela;
+       this.administrador = administrador;
        this.nombre = nombre;
        this.direccion = direccion;
-       this.telefono = telefono;
        this.borradoLogico = borradoLogico;
-       this.personas = personas;
-       this.grados = grados;
-       this.usuarios = usuarios;
-       this.cursos = cursos;
-       this.seccions = seccions;
+       this.cicloEscolars = cicloEscolars;
+       this.directors = directors;
     }
    
     public String getCodigoEscuela() {
@@ -51,6 +43,13 @@ public class Escuela  implements java.io.Serializable {
     
     public void setCodigoEscuela(String codigoEscuela) {
         this.codigoEscuela = codigoEscuela;
+    }
+    public Administrador getAdministrador() {
+        return this.administrador;
+    }
+    
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
     }
     public String getNombre() {
         return this.nombre;
@@ -66,13 +65,6 @@ public class Escuela  implements java.io.Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    public String getTelefono() {
-        return this.telefono;
-    }
-    
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
     public Boolean getBorradoLogico() {
         return this.borradoLogico;
     }
@@ -80,40 +72,19 @@ public class Escuela  implements java.io.Serializable {
     public void setBorradoLogico(Boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
-    public Set<Persona> getPersonas() {
-        return this.personas;
+    public Set<CicloEscolar> getCicloEscolars() {
+        return this.cicloEscolars;
     }
     
-    public void setPersonas(Set<Persona> personas) {
-        this.personas = personas;
+    public void setCicloEscolars(Set<CicloEscolar> cicloEscolars) {
+        this.cicloEscolars = cicloEscolars;
     }
-    public Set<Grado> getGrados() {
-        return this.grados;
-    }
-    
-    public void setGrados(Set<Grado> grados) {
-        this.grados = grados;
-    }
-    public Set<Usuario> getUsuarios() {
-        return this.usuarios;
+    public Set<Director> getDirectors() {
+        return this.directors;
     }
     
-    public void setUsuarios(Set<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-    public Set<Curso> getCursos() {
-        return this.cursos;
-    }
-    
-    public void setCursos(Set<Curso> cursos) {
-        this.cursos = cursos;
-    }
-    public Set<Seccion> getSeccions() {
-        return this.seccions;
-    }
-    
-    public void setSeccions(Set<Seccion> seccions) {
-        this.seccions = seccions;
+    public void setDirectors(Set<Director> directors) {
+        this.directors = directors;
     }
 
 

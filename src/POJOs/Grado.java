@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 16-sep-2024 21:46:47 by Hibernate Tools 4.3.1
+// Generated 22-sep-2024 18:38:34 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,34 +12,29 @@ public class Grado  implements java.io.Serializable {
 
 
      private int idGrado;
-     private Escuela escuela;
-     private String nombre;
-     private String nivel;
+     private CicloEscolar cicloEscolar;
+     private String nombreGrado;
      private Boolean borradoLogico;
-     private Set<Inscripcion> inscripcions = new HashSet<Inscripcion>(0);
-     private Set<Usuario> usuarios = new HashSet<Usuario>(0);
      private Set<Curso> cursos = new HashSet<Curso>(0);
      private Set<Seccion> seccions = new HashSet<Seccion>(0);
+     private Set<HistorialGraduacion> historialGraduacions = new HashSet<HistorialGraduacion>(0);
 
     public Grado() {
     }
 
 	
-    public Grado(int idGrado, String nombre, String nivel) {
+    public Grado(int idGrado, String nombreGrado) {
         this.idGrado = idGrado;
-        this.nombre = nombre;
-        this.nivel = nivel;
+        this.nombreGrado = nombreGrado;
     }
-    public Grado(int idGrado, Escuela escuela, String nombre, String nivel, Boolean borradoLogico, Set<Inscripcion> inscripcions, Set<Usuario> usuarios, Set<Curso> cursos, Set<Seccion> seccions) {
+    public Grado(int idGrado, CicloEscolar cicloEscolar, String nombreGrado, Boolean borradoLogico, Set<Curso> cursos, Set<Seccion> seccions, Set<HistorialGraduacion> historialGraduacions) {
        this.idGrado = idGrado;
-       this.escuela = escuela;
-       this.nombre = nombre;
-       this.nivel = nivel;
+       this.cicloEscolar = cicloEscolar;
+       this.nombreGrado = nombreGrado;
        this.borradoLogico = borradoLogico;
-       this.inscripcions = inscripcions;
-       this.usuarios = usuarios;
        this.cursos = cursos;
        this.seccions = seccions;
+       this.historialGraduacions = historialGraduacions;
     }
    
     public int getIdGrado() {
@@ -49,26 +44,19 @@ public class Grado  implements java.io.Serializable {
     public void setIdGrado(int idGrado) {
         this.idGrado = idGrado;
     }
-    public Escuela getEscuela() {
-        return this.escuela;
+    public CicloEscolar getCicloEscolar() {
+        return this.cicloEscolar;
     }
     
-    public void setEscuela(Escuela escuela) {
-        this.escuela = escuela;
+    public void setCicloEscolar(CicloEscolar cicloEscolar) {
+        this.cicloEscolar = cicloEscolar;
     }
-    public String getNombre() {
-        return this.nombre;
-    }
-    
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public String getNivel() {
-        return this.nivel;
+    public String getNombreGrado() {
+        return this.nombreGrado;
     }
     
-    public void setNivel(String nivel) {
-        this.nivel = nivel;
+    public void setNombreGrado(String nombreGrado) {
+        this.nombreGrado = nombreGrado;
     }
     public Boolean getBorradoLogico() {
         return this.borradoLogico;
@@ -76,20 +64,6 @@ public class Grado  implements java.io.Serializable {
     
     public void setBorradoLogico(Boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
-    }
-    public Set<Inscripcion> getInscripcions() {
-        return this.inscripcions;
-    }
-    
-    public void setInscripcions(Set<Inscripcion> inscripcions) {
-        this.inscripcions = inscripcions;
-    }
-    public Set<Usuario> getUsuarios() {
-        return this.usuarios;
-    }
-    
-    public void setUsuarios(Set<Usuario> usuarios) {
-        this.usuarios = usuarios;
     }
     public Set<Curso> getCursos() {
         return this.cursos;
@@ -104,6 +78,13 @@ public class Grado  implements java.io.Serializable {
     
     public void setSeccions(Set<Seccion> seccions) {
         this.seccions = seccions;
+    }
+    public Set<HistorialGraduacion> getHistorialGraduacions() {
+        return this.historialGraduacions;
+    }
+    
+    public void setHistorialGraduacions(Set<HistorialGraduacion> historialGraduacions) {
+        this.historialGraduacions = historialGraduacions;
     }
 
 

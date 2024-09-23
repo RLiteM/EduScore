@@ -1,18 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16-sep-2024 21:46:47 by Hibernate Tools 4.3.1 -->
+<!-- Generated 22-sep-2024 18:38:35 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="POJOs.Cursodocente" table="cursodocente" catalog="escuelaguate" optimistic-lock="version">
-        <id name="idCursoDocente" type="int">
-            <column name="id_curso_docente" />
+    <class name="POJOs.AsignacionDocenteCurso" table="asignacion_docente_curso" catalog="escuelaguate" optimistic-lock="version">
+        <id name="idAsignacion" type="int">
+            <column name="id_asignacion" />
             <generator class="assigned" />
         </id>
         <many-to-one name="curso" class="POJOs.Curso" fetch="select">
             <column name="id_curso" />
         </many-to-one>
-        <many-to-one name="persona" class="POJOs.Persona" fetch="select">
-            <column name="id_persona" />
+        <many-to-one name="docente" class="POJOs.Docente" fetch="select">
+            <column name="id_docente" />
+        </many-to-one>
+        <many-to-one name="seccion" class="POJOs.Seccion" fetch="select">
+            <column name="id_seccion" />
         </many-to-one>
         <property name="borradoLogico" type="java.lang.Boolean">
             <column name="borrado_logico" />

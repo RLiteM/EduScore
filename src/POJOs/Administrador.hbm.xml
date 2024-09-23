@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22-sep-2024 18:38:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Administrador" table="administrador" catalog="escuelaguate" optimistic-lock="version">
+        <id name="idAdministrador" type="java.lang.Integer">
+            <column name="id_administrador" />
+            <generator class="identity" />
+        </id>
+        <property name="cui" type="long">
+            <column name="cui" not-null="true" unique="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="100" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="100" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="15" not-null="true" />
+        </property>
+        <property name="contrasenia" type="string">
+            <column name="contrasenia" not-null="true" />
+        </property>
+        <property name="borradoLogico" type="java.lang.Boolean">
+            <column name="borrado_logico" />
+        </property>
+        <set name="escuelas" table="escuela" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_administrador" />
+            </key>
+            <one-to-many class="POJOs.Escuela" />
+        </set>
+    </class>
+</hibernate-mapping>

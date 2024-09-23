@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 16-sep-2024 21:46:47 by Hibernate Tools 4.3.1
+// Generated 22-sep-2024 18:38:34 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,27 +12,27 @@ public class Seccion  implements java.io.Serializable {
 
 
      private int idSeccion;
-     private Escuela escuela;
      private Grado grado;
-     private char nombre;
+     private String nombreSeccion;
      private Boolean borradoLogico;
-     private Set<Inscripcion> inscripcions = new HashSet<Inscripcion>(0);
+     private Set<AsignacionDocenteCurso> asignacionDocenteCursos = new HashSet<AsignacionDocenteCurso>(0);
+     private Set<Estudiante> estudiantes = new HashSet<Estudiante>(0);
 
     public Seccion() {
     }
 
 	
-    public Seccion(int idSeccion, char nombre) {
+    public Seccion(int idSeccion, String nombreSeccion) {
         this.idSeccion = idSeccion;
-        this.nombre = nombre;
+        this.nombreSeccion = nombreSeccion;
     }
-    public Seccion(int idSeccion, Escuela escuela, Grado grado, char nombre, Boolean borradoLogico, Set<Inscripcion> inscripcions) {
+    public Seccion(int idSeccion, Grado grado, String nombreSeccion, Boolean borradoLogico, Set<AsignacionDocenteCurso> asignacionDocenteCursos, Set<Estudiante> estudiantes) {
        this.idSeccion = idSeccion;
-       this.escuela = escuela;
        this.grado = grado;
-       this.nombre = nombre;
+       this.nombreSeccion = nombreSeccion;
        this.borradoLogico = borradoLogico;
-       this.inscripcions = inscripcions;
+       this.asignacionDocenteCursos = asignacionDocenteCursos;
+       this.estudiantes = estudiantes;
     }
    
     public int getIdSeccion() {
@@ -42,13 +42,6 @@ public class Seccion  implements java.io.Serializable {
     public void setIdSeccion(int idSeccion) {
         this.idSeccion = idSeccion;
     }
-    public Escuela getEscuela() {
-        return this.escuela;
-    }
-    
-    public void setEscuela(Escuela escuela) {
-        this.escuela = escuela;
-    }
     public Grado getGrado() {
         return this.grado;
     }
@@ -56,12 +49,12 @@ public class Seccion  implements java.io.Serializable {
     public void setGrado(Grado grado) {
         this.grado = grado;
     }
-    public char getNombre() {
-        return this.nombre;
+    public String getNombreSeccion() {
+        return this.nombreSeccion;
     }
     
-    public void setNombre(char nombre) {
-        this.nombre = nombre;
+    public void setNombreSeccion(String nombreSeccion) {
+        this.nombreSeccion = nombreSeccion;
     }
     public Boolean getBorradoLogico() {
         return this.borradoLogico;
@@ -70,12 +63,19 @@ public class Seccion  implements java.io.Serializable {
     public void setBorradoLogico(Boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
-    public Set<Inscripcion> getInscripcions() {
-        return this.inscripcions;
+    public Set<AsignacionDocenteCurso> getAsignacionDocenteCursos() {
+        return this.asignacionDocenteCursos;
     }
     
-    public void setInscripcions(Set<Inscripcion> inscripcions) {
-        this.inscripcions = inscripcions;
+    public void setAsignacionDocenteCursos(Set<AsignacionDocenteCurso> asignacionDocenteCursos) {
+        this.asignacionDocenteCursos = asignacionDocenteCursos;
+    }
+    public Set<Estudiante> getEstudiantes() {
+        return this.estudiantes;
+    }
+    
+    public void setEstudiantes(Set<Estudiante> estudiantes) {
+        this.estudiantes = estudiantes;
     }
 
 

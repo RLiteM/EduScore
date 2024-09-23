@@ -1,37 +1,22 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16-sep-2024 21:46:47 by Hibernate Tools 4.3.1 -->
+<!-- Generated 22-sep-2024 18:38:35 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOs.Grado" table="grado" catalog="escuelaguate" optimistic-lock="version">
         <id name="idGrado" type="int">
             <column name="id_grado" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="escuela" class="POJOs.Escuela" fetch="select">
-            <column name="codigo_escuela" length="15" />
+        <many-to-one name="cicloEscolar" class="POJOs.CicloEscolar" fetch="select">
+            <column name="id_ciclo" />
         </many-to-one>
-        <property name="nombre" type="string">
-            <column name="nombre" length="14" not-null="true" />
-        </property>
-        <property name="nivel" type="string">
-            <column name="nivel" length="8" not-null="true" />
+        <property name="nombreGrado" type="string">
+            <column name="nombre_grado" length="50" not-null="true" />
         </property>
         <property name="borradoLogico" type="java.lang.Boolean">
             <column name="borrado_logico" />
         </property>
-        <set name="inscripcions" table="inscripcion" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_grado" />
-            </key>
-            <one-to-many class="POJOs.Inscripcion" />
-        </set>
-        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_grado" />
-            </key>
-            <one-to-many class="POJOs.Usuario" />
-        </set>
         <set name="cursos" table="curso" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_grado" />
@@ -43,6 +28,12 @@
                 <column name="id_grado" />
             </key>
             <one-to-many class="POJOs.Seccion" />
+        </set>
+        <set name="historialGraduacions" table="historial_graduacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_grado" />
+            </key>
+            <one-to-many class="POJOs.HistorialGraduacion" />
         </set>
     </class>
 </hibernate-mapping>
