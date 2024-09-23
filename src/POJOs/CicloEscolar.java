@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 22-sep-2024 18:38:34 by Hibernate Tools 4.3.1
+// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class CicloEscolar  implements java.io.Serializable {
 
 
-     private int idCiclo;
+     private Integer idCiclo;
      private Escuela escuela;
      private int anio;
      private String estado;
@@ -22,12 +22,10 @@ public class CicloEscolar  implements java.io.Serializable {
     }
 
 	
-    public CicloEscolar(int idCiclo, int anio) {
-        this.idCiclo = idCiclo;
+    public CicloEscolar(int anio) {
         this.anio = anio;
     }
-    public CicloEscolar(int idCiclo, Escuela escuela, int anio, String estado, Boolean borradoLogico, Set<Grado> grados) {
-       this.idCiclo = idCiclo;
+    public CicloEscolar(Escuela escuela, int anio, String estado, Boolean borradoLogico, Set<Grado> grados) {
        this.escuela = escuela;
        this.anio = anio;
        this.estado = estado;
@@ -35,11 +33,11 @@ public class CicloEscolar  implements java.io.Serializable {
        this.grados = grados;
     }
    
-    public int getIdCiclo() {
+    public Integer getIdCiclo() {
         return this.idCiclo;
     }
     
-    public void setIdCiclo(int idCiclo) {
+    public void setIdCiclo(Integer idCiclo) {
         this.idCiclo = idCiclo;
     }
     public Escuela getEscuela() {

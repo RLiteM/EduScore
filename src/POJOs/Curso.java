@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 22-sep-2024 18:38:34 by Hibernate Tools 4.3.1
+// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Curso  implements java.io.Serializable {
 
 
-     private int idCurso;
+     private Integer idCurso;
      private Grado grado;
      private String nombreCurso;
      private Boolean borradoLogico;
@@ -22,12 +22,10 @@ public class Curso  implements java.io.Serializable {
     }
 
 	
-    public Curso(int idCurso, String nombreCurso) {
-        this.idCurso = idCurso;
+    public Curso(String nombreCurso) {
         this.nombreCurso = nombreCurso;
     }
-    public Curso(int idCurso, Grado grado, String nombreCurso, Boolean borradoLogico, Set<Actividad> actividads, Set<AsignacionDocenteCurso> asignacionDocenteCursos) {
-       this.idCurso = idCurso;
+    public Curso(Grado grado, String nombreCurso, Boolean borradoLogico, Set<Actividad> actividads, Set<AsignacionDocenteCurso> asignacionDocenteCursos) {
        this.grado = grado;
        this.nombreCurso = nombreCurso;
        this.borradoLogico = borradoLogico;
@@ -35,11 +33,11 @@ public class Curso  implements java.io.Serializable {
        this.asignacionDocenteCursos = asignacionDocenteCursos;
     }
    
-    public int getIdCurso() {
+    public Integer getIdCurso() {
         return this.idCurso;
     }
     
-    public void setIdCurso(int idCurso) {
+    public void setIdCurso(Integer idCurso) {
         this.idCurso = idCurso;
     }
     public Grado getGrado() {

@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 22-sep-2024 18:38:34 by Hibernate Tools 4.3.1
+// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package POJOs;
 public class HistorialGraduacion  implements java.io.Serializable {
 
 
-     private int idHistorial;
+     private Integer idHistorial;
      private Estudiante estudiante;
      private Grado grado;
      private Integer anio;
@@ -19,12 +19,7 @@ public class HistorialGraduacion  implements java.io.Serializable {
     public HistorialGraduacion() {
     }
 
-	
-    public HistorialGraduacion(int idHistorial) {
-        this.idHistorial = idHistorial;
-    }
-    public HistorialGraduacion(int idHistorial, Estudiante estudiante, Grado grado, Integer anio, Boolean promovido, Boolean borradoLogico) {
-       this.idHistorial = idHistorial;
+    public HistorialGraduacion(Estudiante estudiante, Grado grado, Integer anio, Boolean promovido, Boolean borradoLogico) {
        this.estudiante = estudiante;
        this.grado = grado;
        this.anio = anio;
@@ -32,11 +27,11 @@ public class HistorialGraduacion  implements java.io.Serializable {
        this.borradoLogico = borradoLogico;
     }
    
-    public int getIdHistorial() {
+    public Integer getIdHistorial() {
         return this.idHistorial;
     }
     
-    public void setIdHistorial(int idHistorial) {
+    public void setIdHistorial(Integer idHistorial) {
         this.idHistorial = idHistorial;
     }
     public Estudiante getEstudiante() {

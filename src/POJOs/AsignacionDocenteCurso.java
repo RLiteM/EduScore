@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 22-sep-2024 18:38:34 by Hibernate Tools 4.3.1
+// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package POJOs;
 public class AsignacionDocenteCurso  implements java.io.Serializable {
 
 
-     private int idAsignacion;
+     private Integer idAsignacion;
      private Curso curso;
      private Docente docente;
      private Seccion seccion;
@@ -18,23 +18,18 @@ public class AsignacionDocenteCurso  implements java.io.Serializable {
     public AsignacionDocenteCurso() {
     }
 
-	
-    public AsignacionDocenteCurso(int idAsignacion) {
-        this.idAsignacion = idAsignacion;
-    }
-    public AsignacionDocenteCurso(int idAsignacion, Curso curso, Docente docente, Seccion seccion, Boolean borradoLogico) {
-       this.idAsignacion = idAsignacion;
+    public AsignacionDocenteCurso(Curso curso, Docente docente, Seccion seccion, Boolean borradoLogico) {
        this.curso = curso;
        this.docente = docente;
        this.seccion = seccion;
        this.borradoLogico = borradoLogico;
     }
    
-    public int getIdAsignacion() {
+    public Integer getIdAsignacion() {
         return this.idAsignacion;
     }
     
-    public void setIdAsignacion(int idAsignacion) {
+    public void setIdAsignacion(Integer idAsignacion) {
         this.idAsignacion = idAsignacion;
     }
     public Curso getCurso() {

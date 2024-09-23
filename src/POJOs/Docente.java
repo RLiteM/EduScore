@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 22-sep-2024 18:38:34 by Hibernate Tools 4.3.1
+// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,6 +17,7 @@ public class Docente  implements java.io.Serializable {
      private String contrasenia;
      private Boolean borradoLogico;
      private Set<AsignacionDocenteCurso> asignacionDocenteCursos = new HashSet<AsignacionDocenteCurso>(0);
+     private Set<AsignacionDocenteEscuela> asignacionDocenteEscuelas = new HashSet<AsignacionDocenteEscuela>(0);
 
     public Docente() {
     }
@@ -27,12 +28,13 @@ public class Docente  implements java.io.Serializable {
         this.cui = cui;
         this.contrasenia = contrasenia;
     }
-    public Docente(String codigoPersonal, long cui, String contrasenia, Boolean borradoLogico, Set<AsignacionDocenteCurso> asignacionDocenteCursos) {
+    public Docente(String codigoPersonal, long cui, String contrasenia, Boolean borradoLogico, Set<AsignacionDocenteCurso> asignacionDocenteCursos, Set<AsignacionDocenteEscuela> asignacionDocenteEscuelas) {
        this.codigoPersonal = codigoPersonal;
        this.cui = cui;
        this.contrasenia = contrasenia;
        this.borradoLogico = borradoLogico;
        this.asignacionDocenteCursos = asignacionDocenteCursos;
+       this.asignacionDocenteEscuelas = asignacionDocenteEscuelas;
     }
    
     public Integer getIdDocente() {
@@ -76,6 +78,13 @@ public class Docente  implements java.io.Serializable {
     
     public void setAsignacionDocenteCursos(Set<AsignacionDocenteCurso> asignacionDocenteCursos) {
         this.asignacionDocenteCursos = asignacionDocenteCursos;
+    }
+    public Set<AsignacionDocenteEscuela> getAsignacionDocenteEscuelas() {
+        return this.asignacionDocenteEscuelas;
+    }
+    
+    public void setAsignacionDocenteEscuelas(Set<AsignacionDocenteEscuela> asignacionDocenteEscuelas) {
+        this.asignacionDocenteEscuelas = asignacionDocenteEscuelas;
     }
 
 
