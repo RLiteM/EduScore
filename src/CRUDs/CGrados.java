@@ -1,0 +1,179 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package CRUDs;
+
+import POJOs.CicloEscolar;
+import POJOs.Grado;
+import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+
+/**
+ *
+ * @author IngeMayk
+ */
+public class CGrados {
+     public static List<Grado> universo() {
+
+        Session session = HibernateUtil.HibernateUtil.getSessionFactory().getCurrentSession();
+        List<Grado> lista = null;
+        try {
+            session.beginTransaction();
+            Criteria criteria = session.createCriteria(Grado.class);
+            criteria.add(Restrictions.eq("borradoLogico", true));
+            criteria.setProjection(Projections.projectionList()
+                    .add(Projections.property("nombreGrado"))
+                    .add(Projections.property("idCiclo"))
+            );
+
+        } catch (Exception e) {
+            System.out.println("error" + e);
+        } finally {
+            session.getTransaction().commit();
+        }
+        return lista;
+    }
+public static boolean crear(String nombreGrado, int idCiclo) {
+    boolean flag = false;
+    Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
+    Criteria criteria = session.createCriteria(Grado.class);
+    criteria.add(Restrictions.eq("borradoLogico", true));
+    Grado insert = (Grado) criteria.uniqueResult();
+    Transaction transaction = null;
+    try {
+        transaction = session.beginTransaction();
+        if (insert == null) {
+            insert = new Grado();
+            insert.setNombreGrado(nombreGrado);
+            // Obtener el objeto Administrador
+            CicloEscolar administrador = (CicloEscolar) session.get(CicloEscolar.class, idCiclo);
+            if (administrador == null) {
+                throw new RuntimeException("El administrador con ID " + idCiclo + " no existe.");
+            }
+            
+            // Asignar el administrador a la escuela
+            insert.setCicloEscolar(administrador);
+            insert.setBorradoLogico(true);
+            session.save(insert);
+            flag = true;
+        }
+        transaction.commit();
+    } catch (Exception e) {
+        if (transaction != null) {
+            transaction.rollback();
+        }
+        e.printStackTrace();
+    } finally {
+        session.close();
+    }
+    return flag;
+}
+
+
+    // este es nuestro metodo actualizar, 
+/*
+public static boolean actualizar(String codigoEscuela, String nombre, String direccion, int idAdministrador) {
+    boolean flag = false;
+    Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
+    Criteria criteria = session.createCriteria(Escuela.class);
+    criteria.add(Restrictions.eq("codigoEscuela", codigoEscuela)); // Buscar la escuela por código
+    Escuela insert = (Escuela) criteria.uniqueResult(); // Obtener la escuela existente 
+    Transaction transaction = null;
+    try {
+        transaction = session.beginTransaction();
+        if (insert != null) {
+            // Actualizar nombre y dirección
+            insert.setNombre(nombre);
+            insert.setDireccion(direccion);
+            
+            // Obtener el objeto Administrador
+            Administrador administrador = (Administrador) session.get(Administrador.class, idAdministrador);
+            if (administrador == null) {
+                throw new RuntimeException("El administrador con ID " + idAdministrador + " no existe.");
+            }
+            
+            // Asignar el administrador a la escuela
+            insert.setAdministrador(administrador);
+            
+            // Actualizar la escuela
+            session.update(insert);
+            flag = true;
+        }
+        transaction.commit();
+    } catch (Exception e) {
+        if (transaction != null) {
+            transaction.rollback();
+        }
+        e.printStackTrace();
+    } finally {
+        session.close();
+    }
+    return flag;
+}
+
+
+    public static boolean anular(String codigoEscuela) {
+        boolean flag = false;
+        Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Escuela.class);
+        criteria.add(Restrictions.eq("codigoEscuela", codigoEscuela)); // corrigir datos escuela
+        Escuela anular = (Escuela) criteria.uniqueResult(); // obtener la persona existente 
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            if (anular != null) {
+                anular.setBorradoLogico(false);
+                session.update(anular);
+                flag = true;
+            } else {
+                System.out.println("No se encontro el codigo de la escuela " + codigoEscuela);
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return flag;
+    }
+
+    public static boolean reactivar(String codigoEscuela) {
+        boolean flag = false;
+        Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Escuela.class);
+        criteria.add(Restrictions.eq("codigoEscuela", codigoEscuela)); // buscar la escuela por código
+        Escuela reactivar = (Escuela) criteria.uniqueResult(); // obtener la escuela existente
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            if (reactivar != null && !reactivar.getBorradoLogico()) { // verificar si está anulada
+                reactivar.setBorradoLogico(true); // reactivar la escuela
+                session.update(reactivar);
+                flag = true;
+            } else if (reactivar == null) {
+                System.out.println("No se encontró la escuela con el código: " + codigoEscuela);
+            } else {
+                System.out.println("La escuela ya está activa.");
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return flag;
+    }
+    */
+}
