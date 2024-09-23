@@ -50,7 +50,7 @@ public class CDirector {
         }
         return lista;
     }
-
+// metodo para crear Director
 public static boolean crear( String codigoEscuela, String nombre, String apellido, String telefono, String contrasenia) {
     boolean flag = false;
     Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();

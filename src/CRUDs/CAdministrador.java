@@ -23,6 +23,8 @@ public class CAdministrador {
         Session session = HibernateUtil.HibernateUtil.getSessionFactory().getCurrentSession();
         List<Administrador> lista = null;
         try {
+            
+            // Nos sirve para ver la informacion activa en cualquir tablla, 
             session.beginTransaction();
             Criteria criteria = session.createCriteria(Administrador.class);
             criteria.add(Restrictions.eq("borradoLogico", true)); // Solo usuarios no eliminados
@@ -42,7 +44,7 @@ public class CAdministrador {
         return lista;
     }
 
-    // Método para crear un usuario
+    // Método para crear un Administrador
     public static boolean crearAdministrador(long cui, String nombre,String apellido, String telefono, String contrasenia) {
         boolean flag = false;
         Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();

@@ -57,7 +57,6 @@ public static boolean crear(String codigoEscuela, String nombre, String direccio
             insert.setCodigoEscuela(codigoEscuela);
             insert.setNombre(nombre);
             insert.setDireccion(direccion);
-            
             // Obtener el objeto Administrador
             Administrador administrador = (Administrador) session.get(Administrador.class, idAdministrador);
             if (administrador == null) {
