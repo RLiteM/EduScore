@@ -42,27 +42,41 @@ public class CGrados {
 public static boolean crear(String nombreGrado, int idCiclo) {
     boolean flag = false;
     Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
-    Criteria criteria = session.createCriteria(Grado.class);
-    criteria.add(Restrictions.eq("borradoLogico", true));
-    Grado insert = (Grado) criteria.uniqueResult();
     Transaction transaction = null;
+
     try {
         transaction = session.beginTransaction();
-        if (insert == null) {
-            insert = new Grado();
-            insert.setNombreGrado(nombreGrado);
-            // Obtener el objeto Administrador
-            CicloEscolar administrador = (CicloEscolar) session.get(CicloEscolar.class, idCiclo);
-            if (administrador == null) {
-                throw new RuntimeException("El administrador con ID " + idCiclo + " no existe.");
+
+        // Verificar si ya existe un grado con el mismo nombre en el mismo ciclo escolar
+        Criteria criteria = session.createCriteria(Grado.class);
+        criteria.add(Restrictions.eq("nombreGrado", nombreGrado));
+        criteria.add(Restrictions.eq("cicloEscolar.id", idCiclo));
+        criteria.add(Restrictions.eq("borradoLogico", true));  // Solo considera los registros no eliminados
+
+        Grado existente = (Grado) criteria.uniqueResult();
+
+        if (existente == null) {
+            // Si no existe, creamos un nuevo grado
+            Grado nuevoGrado = new Grado();
+            nuevoGrado.setNombreGrado(nombreGrado);
+
+            // Obtener el objeto CicloEscolar
+            CicloEscolar cicloEscolar = (CicloEscolar) session.get(CicloEscolar.class, idCiclo);
+            if (cicloEscolar == null) {
+                throw new RuntimeException("El ciclo escolar con ID " + idCiclo + " no existe.");
             }
+
+            // Asignar el ciclo escolar al grado
+            nuevoGrado.setCicloEscolar(cicloEscolar);
+            nuevoGrado.setBorradoLogico(true);
             
-            // Asignar el administrador a la escuela
-            insert.setCicloEscolar(administrador);
-            insert.setBorradoLogico(true);
-            session.save(insert);
+            // Guardar el nuevo grado
+            session.save(nuevoGrado);
             flag = true;
+        } else {
+            System.out.println("El grado con el nombre '" + nombreGrado + "' ya existe para este ciclo escolar.");
         }
+
         transaction.commit();
     } catch (Exception e) {
         if (transaction != null) {
@@ -72,8 +86,10 @@ public static boolean crear(String nombreGrado, int idCiclo) {
     } finally {
         session.close();
     }
+
     return flag;
 }
+
 
 
     // este es nuestro metodo actualizar, 
