@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 22-sep-2024 18:38:34 by Hibernate Tools 4.3.1
+// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 public class Notas  implements java.io.Serializable {
 
 
-     private int idNota;
+     private Integer idNota;
      private Actividad actividad;
      private Estudiante estudiante;
      private BigDecimal nota;
@@ -19,23 +19,18 @@ public class Notas  implements java.io.Serializable {
     public Notas() {
     }
 
-	
-    public Notas(int idNota) {
-        this.idNota = idNota;
-    }
-    public Notas(int idNota, Actividad actividad, Estudiante estudiante, BigDecimal nota, Boolean borradoLogico) {
-       this.idNota = idNota;
+    public Notas(Actividad actividad, Estudiante estudiante, BigDecimal nota, Boolean borradoLogico) {
        this.actividad = actividad;
        this.estudiante = estudiante;
        this.nota = nota;
        this.borradoLogico = borradoLogico;
     }
    
-    public int getIdNota() {
+    public Integer getIdNota() {
         return this.idNota;
     }
     
-    public void setIdNota(int idNota) {
+    public void setIdNota(Integer idNota) {
         this.idNota = idNota;
     }
     public Actividad getActividad() {

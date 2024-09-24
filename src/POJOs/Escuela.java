@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 22-sep-2024 18:38:34 by Hibernate Tools 4.3.1
+// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -18,6 +18,7 @@ public class Escuela  implements java.io.Serializable {
      private Boolean borradoLogico;
      private Set<CicloEscolar> cicloEscolars = new HashSet<CicloEscolar>(0);
      private Set<Director> directors = new HashSet<Director>(0);
+     private Set<AsignacionDocenteEscuela> asignacionDocenteEscuelas = new HashSet<AsignacionDocenteEscuela>(0);
 
     public Escuela() {
     }
@@ -27,7 +28,7 @@ public class Escuela  implements java.io.Serializable {
         this.codigoEscuela = codigoEscuela;
         this.nombre = nombre;
     }
-    public Escuela(String codigoEscuela, Administrador administrador, String nombre, String direccion, Boolean borradoLogico, Set<CicloEscolar> cicloEscolars, Set<Director> directors) {
+    public Escuela(String codigoEscuela, Administrador administrador, String nombre, String direccion, Boolean borradoLogico, Set<CicloEscolar> cicloEscolars, Set<Director> directors, Set<AsignacionDocenteEscuela> asignacionDocenteEscuelas) {
        this.codigoEscuela = codigoEscuela;
        this.administrador = administrador;
        this.nombre = nombre;
@@ -35,6 +36,7 @@ public class Escuela  implements java.io.Serializable {
        this.borradoLogico = borradoLogico;
        this.cicloEscolars = cicloEscolars;
        this.directors = directors;
+       this.asignacionDocenteEscuelas = asignacionDocenteEscuelas;
     }
    
     public String getCodigoEscuela() {
@@ -85,6 +87,13 @@ public class Escuela  implements java.io.Serializable {
     
     public void setDirectors(Set<Director> directors) {
         this.directors = directors;
+    }
+    public Set<AsignacionDocenteEscuela> getAsignacionDocenteEscuelas() {
+        return this.asignacionDocenteEscuelas;
+    }
+    
+    public void setAsignacionDocenteEscuelas(Set<AsignacionDocenteEscuela> asignacionDocenteEscuelas) {
+        this.asignacionDocenteEscuelas = asignacionDocenteEscuelas;
     }
 
 

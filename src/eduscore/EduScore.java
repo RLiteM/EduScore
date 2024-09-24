@@ -16,6 +16,6 @@ public class EduScore {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Crear escuela" + CRUDs.CEscuela.crear("13-08-0500-47", "Mariano Galvez", "Huehuetenagno", 4));
+        System.out.println("Crear escuela" + CRUDs.CCicloEscolar.crear(2024, "Activo", "13-08-0500-45"));
 }
     }

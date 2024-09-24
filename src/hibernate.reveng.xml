@@ -41,17 +41,18 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="escuelaguate"/>
-  <table-filter match-name="ciclo_escolar"/>
-  <table-filter match-name="director"/>
-  <table-filter match-name="asignacion_docente_curso"/>
-  <table-filter match-name="escuela"/>
-  <table-filter match-name="curso"/>
-  <table-filter match-name="seccion"/>
-  <table-filter match-name="historial_graduacion"/>
-  <table-filter match-name="actividad"/>
-  <table-filter match-name="docente"/>
-  <table-filter match-name="grado"/>
-  <table-filter match-name="notas"/>
-  <table-filter match-name="estudiante"/>
   <table-filter match-name="administrador"/>
+  <table-filter match-name="asignacion_docente_curso"/>
+  <table-filter match-name="estudiante"/>
+  <table-filter match-name="ciclo_escolar"/>
+  <table-filter match-name="curso"/>
+  <table-filter match-name="notas"/>
+  <table-filter match-name="escuela"/>
+  <table-filter match-name="director"/>
+  <table-filter match-name="docente"/>
+  <table-filter match-name="actividad"/>
+  <table-filter match-name="asignacion_docente_escuela"/>
+  <table-filter match-name="historial_graduacion"/>
+  <table-filter match-name="grado"/>
+  <table-filter match-name="seccion"/>
 </hibernate-reverse-engineering>

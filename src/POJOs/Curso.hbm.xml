@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 22-sep-2024 18:38:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOs.Curso" table="curso" catalog="escuelaguate" optimistic-lock="version">
-        <id name="idCurso" type="int">
+        <id name="idCurso" type="java.lang.Integer">
             <column name="id_curso" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="grado" class="POJOs.Grado" fetch="select">
             <column name="id_grado" />

@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 22-sep-2024 18:38:34 by Hibernate Tools 4.3.1
+// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package POJOs;
 public class Director  implements java.io.Serializable {
 
 
-     private int idDirector;
+     private Integer idDirector;
      private Escuela escuela;
      private String nombre;
      private String apellido;
@@ -21,15 +21,13 @@ public class Director  implements java.io.Serializable {
     }
 
 	
-    public Director(int idDirector, String nombre, String apellido, String telefono, String contrasenia) {
-        this.idDirector = idDirector;
+    public Director(String nombre, String apellido, String telefono, String contrasenia) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.contrasenia = contrasenia;
     }
-    public Director(int idDirector, Escuela escuela, String nombre, String apellido, String telefono, String contrasenia, Boolean borradoLogico) {
-       this.idDirector = idDirector;
+    public Director(Escuela escuela, String nombre, String apellido, String telefono, String contrasenia, Boolean borradoLogico) {
        this.escuela = escuela;
        this.nombre = nombre;
        this.apellido = apellido;
@@ -38,11 +36,11 @@ public class Director  implements java.io.Serializable {
        this.borradoLogico = borradoLogico;
     }
    
-    public int getIdDirector() {
+    public Integer getIdDirector() {
         return this.idDirector;
     }
     
-    public void setIdDirector(int idDirector) {
+    public void setIdDirector(Integer idDirector) {
         this.idDirector = idDirector;
     }
     public Escuela getEscuela() {
