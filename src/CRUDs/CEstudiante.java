@@ -43,7 +43,7 @@ public class CEstudiante {
         return lista;
     }
     
-   public static boolean crear(long cui, String codigoEstudiante, String nombreEstudiante, int idSeccion) {
+   public static boolean crearEstudiante(long cui, String codigoEstudiante, String nombreEstudiante, int idSeccion) {
     boolean flag = false;
     Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = null;
