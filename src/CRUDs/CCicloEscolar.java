@@ -43,36 +43,46 @@ public class CCicloEscolar {
         return lista;
     }
     
-    public static boolean crear( int anio, String estado, String codigoEscuela) {
+   public static boolean crear(int anio, String estado, String codigoEscuela) {
     boolean flag = false;
     Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
-    Criteria criteria = session.createCriteria(CicloEscolar.class);
-    criteria.add(Restrictions.eq("borradoLogico", true));
-    CicloEscolar insert = (CicloEscolar) criteria.uniqueResult();
     Transaction transaction = null;
+
     try {
         transaction = session.beginTransaction();
-        if (insert == null) {
-            insert = new CicloEscolar();
-            //atributos ciclo
-            insert.setAnio(anio);
-            insert.setEstado(estado);
-            // Obtener el objeto Escuela
+
+        // Verificar si ya existe un ciclo escolar con el mismo año y estado 'Activo' en la misma escuela
+        Criteria criteria = session.createCriteria(CicloEscolar.class);
+        criteria.createAlias("escuela", "escuela");
+        criteria.add(Restrictions.eq("anio", anio));
+        criteria.add(Restrictions.eq("escuela.codigoEscuela", codigoEscuela));
+        criteria.add(Restrictions.eq("estado", "Activo"));  // Verificar que el ciclo actual esté activo
+
+        CicloEscolar existente = (CicloEscolar) criteria.uniqueResult();
+
+        if (existente == null) {
+            // Si no existe un ciclo activo, crear uno nuevo
+            CicloEscolar nuevoCiclo = new CicloEscolar();
+            nuevoCiclo.setAnio(anio);
+            nuevoCiclo.setEstado(estado);
+
+            // Obtener la escuela a la que pertenece el ciclo
             Escuela escuela = (Escuela) session.get(Escuela.class, codigoEscuela);
             if (escuela == null) {
                 throw new RuntimeException("La escuela con código " + codigoEscuela + " no existe.");
             }
 
-            // Asignar la escuela al director
-            insert.setEscuela(escuela);
-            
-            // Asignar los demás atributos del director
-            insert.setBorradoLogico(true);
+            // Asignar la escuela al ciclo escolar
+            nuevoCiclo.setEscuela(escuela);
+            nuevoCiclo.setBorradoLogico(true);
 
-            // Guardar el nuevo director
-            session.save(insert);
+            // Guardar el nuevo ciclo escolar
+            session.save(nuevoCiclo);
             flag = true;
+        } else {
+            System.out.println("Ya existe un ciclo escolar activo para el año " + anio + " en la escuela con código " + codigoEscuela);
         }
+
         transaction.commit();
     } catch (Exception e) {
         if (transaction != null) {
@@ -84,6 +94,7 @@ public class CCicloEscolar {
     }
     return flag;
 }
+
     
     public static boolean actualizar( int idCiclo, int anio, String estado, String codigoEscuela) {
     boolean flag = false;
