@@ -94,9 +94,8 @@ public class CEstudiante {
     }
     return flag;
 }
-
     
-    public static boolean actualizar(int idEstudiante, long cui, String codigoEstudiante, String nombreEstudiante, int idSeccion) {
+    public static boolean actualizarEstudiante(int idEstudiante, long cui, String codigoEstudiante, String nombreEstudiante, int idSeccion) {
     boolean flag = false;
     Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
     Criteria criteria = session.createCriteria(Estudiante.class);
@@ -107,7 +106,7 @@ public class CEstudiante {
         transaction = session.beginTransaction();
         if (actualizar == null) {
 
-            //atributos estudiante
+            //Actualizar atributos del estudiante
             actualizar.setCui(cui);
             actualizar.setCodigoEstudiante(codigoEstudiante);
             actualizar.setNombreEstudiante(nombreEstudiante);
@@ -120,8 +119,7 @@ public class CEstudiante {
 
             // Asigna la sección al estudiante
             actualizar.setSeccion(seccion);
-            
-
+           
             // Guardar el estudiante actualizado
             session.update(actualizar);
             flag = true;
@@ -138,7 +136,7 @@ public class CEstudiante {
     return flag;
 }
     
-     public static boolean anular(int idEstudiante) {
+     public static boolean anularEstudiante(int idEstudiante) {
         boolean flag = false;
         Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Estudiante.class);
@@ -166,7 +164,7 @@ public class CEstudiante {
         return flag;
     }
 
-    public static boolean reactivar(int idEstudiante) {
+    public static boolean reactivarEstudiante(int idEstudiante) {
         boolean flag = false;
         Session session = HibernateUtil.HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Estudiante.class);
