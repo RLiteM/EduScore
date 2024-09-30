@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
+// Generated 29-sep-2024 19:19:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,8 +15,8 @@ public class Curso  implements java.io.Serializable {
      private Grado grado;
      private String nombreCurso;
      private Boolean borradoLogico;
-     private Set<Actividad> actividads = new HashSet<Actividad>(0);
-     private Set<AsignacionDocenteCurso> asignacionDocenteCursos = new HashSet<AsignacionDocenteCurso>(0);
+     private Set actividads = new HashSet(0);
+     private Set asignacionDocenteCursos = new HashSet(0);
 
     public Curso() {
     }
@@ -25,7 +25,7 @@ public class Curso  implements java.io.Serializable {
     public Curso(String nombreCurso) {
         this.nombreCurso = nombreCurso;
     }
-    public Curso(Grado grado, String nombreCurso, Boolean borradoLogico, Set<Actividad> actividads, Set<AsignacionDocenteCurso> asignacionDocenteCursos) {
+    public Curso(Grado grado, String nombreCurso, Boolean borradoLogico, Set actividads, Set asignacionDocenteCursos) {
        this.grado = grado;
        this.nombreCurso = nombreCurso;
        this.borradoLogico = borradoLogico;
@@ -61,18 +61,18 @@ public class Curso  implements java.io.Serializable {
     public void setBorradoLogico(Boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
-    public Set<Actividad> getActividads() {
+    public Set getActividads() {
         return this.actividads;
     }
     
-    public void setActividads(Set<Actividad> actividads) {
+    public void setActividads(Set actividads) {
         this.actividads = actividads;
     }
-    public Set<AsignacionDocenteCurso> getAsignacionDocenteCursos() {
+    public Set getAsignacionDocenteCursos() {
         return this.asignacionDocenteCursos;
     }
     
-    public void setAsignacionDocenteCursos(Set<AsignacionDocenteCurso> asignacionDocenteCursos) {
+    public void setAsignacionDocenteCursos(Set asignacionDocenteCursos) {
         this.asignacionDocenteCursos = asignacionDocenteCursos;
     }
 

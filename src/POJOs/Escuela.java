@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
+// Generated 29-sep-2024 19:19:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,9 +16,11 @@ public class Escuela  implements java.io.Serializable {
      private String nombre;
      private String direccion;
      private Boolean borradoLogico;
-     private Set<CicloEscolar> cicloEscolars = new HashSet<CicloEscolar>(0);
-     private Set<Director> directors = new HashSet<Director>(0);
-     private Set<AsignacionDocenteEscuela> asignacionDocenteEscuelas = new HashSet<AsignacionDocenteEscuela>(0);
+     private Set grados = new HashSet(0);
+     private Set cicloEscolars = new HashSet(0);
+     private Set docentes = new HashSet(0);
+     private Set directors = new HashSet(0);
+     private Set asignacionDocenteEscuelas = new HashSet(0);
 
     public Escuela() {
     }
@@ -28,13 +30,15 @@ public class Escuela  implements java.io.Serializable {
         this.codigoEscuela = codigoEscuela;
         this.nombre = nombre;
     }
-    public Escuela(String codigoEscuela, Administrador administrador, String nombre, String direccion, Boolean borradoLogico, Set<CicloEscolar> cicloEscolars, Set<Director> directors, Set<AsignacionDocenteEscuela> asignacionDocenteEscuelas) {
+    public Escuela(String codigoEscuela, Administrador administrador, String nombre, String direccion, Boolean borradoLogico, Set grados, Set cicloEscolars, Set docentes, Set directors, Set asignacionDocenteEscuelas) {
        this.codigoEscuela = codigoEscuela;
        this.administrador = administrador;
        this.nombre = nombre;
        this.direccion = direccion;
        this.borradoLogico = borradoLogico;
+       this.grados = grados;
        this.cicloEscolars = cicloEscolars;
+       this.docentes = docentes;
        this.directors = directors;
        this.asignacionDocenteEscuelas = asignacionDocenteEscuelas;
     }
@@ -74,25 +78,39 @@ public class Escuela  implements java.io.Serializable {
     public void setBorradoLogico(Boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
-    public Set<CicloEscolar> getCicloEscolars() {
+    public Set getGrados() {
+        return this.grados;
+    }
+    
+    public void setGrados(Set grados) {
+        this.grados = grados;
+    }
+    public Set getCicloEscolars() {
         return this.cicloEscolars;
     }
     
-    public void setCicloEscolars(Set<CicloEscolar> cicloEscolars) {
+    public void setCicloEscolars(Set cicloEscolars) {
         this.cicloEscolars = cicloEscolars;
     }
-    public Set<Director> getDirectors() {
+    public Set getDocentes() {
+        return this.docentes;
+    }
+    
+    public void setDocentes(Set docentes) {
+        this.docentes = docentes;
+    }
+    public Set getDirectors() {
         return this.directors;
     }
     
-    public void setDirectors(Set<Director> directors) {
+    public void setDirectors(Set directors) {
         this.directors = directors;
     }
-    public Set<AsignacionDocenteEscuela> getAsignacionDocenteEscuelas() {
+    public Set getAsignacionDocenteEscuelas() {
         return this.asignacionDocenteEscuelas;
     }
     
-    public void setAsignacionDocenteEscuelas(Set<AsignacionDocenteEscuela> asignacionDocenteEscuelas) {
+    public void setAsignacionDocenteEscuelas(Set asignacionDocenteEscuelas) {
         this.asignacionDocenteEscuelas = asignacionDocenteEscuelas;
     }
 

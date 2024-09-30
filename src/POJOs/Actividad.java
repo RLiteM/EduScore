@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
+// Generated 29-sep-2024 19:19:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,25 +11,23 @@ import java.util.Set;
 public class Actividad  implements java.io.Serializable {
 
 
-     private int idActividad;
+     private Integer idActividad;
      private Curso curso;
      private String nombreActividad;
      private String tipo;
      private Integer unidad;
      private Boolean borradoLogico;
-     private Set<Notas> notases = new HashSet<Notas>(0);
+     private Set notases = new HashSet(0);
 
     public Actividad() {
     }
 
 	
-    public Actividad(int idActividad, String nombreActividad, String tipo) {
-        this.idActividad = idActividad;
+    public Actividad(String nombreActividad, String tipo) {
         this.nombreActividad = nombreActividad;
         this.tipo = tipo;
     }
-    public Actividad(int idActividad, Curso curso, String nombreActividad, String tipo, Integer unidad, Boolean borradoLogico, Set<Notas> notases) {
-       this.idActividad = idActividad;
+    public Actividad(Curso curso, String nombreActividad, String tipo, Integer unidad, Boolean borradoLogico, Set notases) {
        this.curso = curso;
        this.nombreActividad = nombreActividad;
        this.tipo = tipo;
@@ -38,11 +36,11 @@ public class Actividad  implements java.io.Serializable {
        this.notases = notases;
     }
    
-    public int getIdActividad() {
+    public Integer getIdActividad() {
         return this.idActividad;
     }
     
-    public void setIdActividad(int idActividad) {
+    public void setIdActividad(Integer idActividad) {
         this.idActividad = idActividad;
     }
     public Curso getCurso() {
@@ -80,11 +78,11 @@ public class Actividad  implements java.io.Serializable {
     public void setBorradoLogico(Boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
-    public Set<Notas> getNotases() {
+    public Set getNotases() {
         return this.notases;
     }
     
-    public void setNotases(Set<Notas> notases) {
+    public void setNotases(Set notases) {
         this.notases = notases;
     }
 

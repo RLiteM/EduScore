@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
+// Generated 29-sep-2024 19:19:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,13 +12,14 @@ public class Estudiante  implements java.io.Serializable {
 
 
      private Integer idEstudiante;
+     private CicloEscolar cicloEscolar;
      private Seccion seccion;
      private long cui;
      private String codigoEstudiante;
      private String nombreEstudiante;
      private Boolean borradoLogico;
-     private Set<Notas> notases = new HashSet<Notas>(0);
-     private Set<HistorialGraduacion> historialGraduacions = new HashSet<HistorialGraduacion>(0);
+     private Set notases = new HashSet(0);
+     private Set historialGraduacions = new HashSet(0);
 
     public Estudiante() {
     }
@@ -29,7 +30,8 @@ public class Estudiante  implements java.io.Serializable {
         this.codigoEstudiante = codigoEstudiante;
         this.nombreEstudiante = nombreEstudiante;
     }
-    public Estudiante(Seccion seccion, long cui, String codigoEstudiante, String nombreEstudiante, Boolean borradoLogico, Set<Notas> notases, Set<HistorialGraduacion> historialGraduacions) {
+    public Estudiante(CicloEscolar cicloEscolar, Seccion seccion, long cui, String codigoEstudiante, String nombreEstudiante, Boolean borradoLogico, Set notases, Set historialGraduacions) {
+       this.cicloEscolar = cicloEscolar;
        this.seccion = seccion;
        this.cui = cui;
        this.codigoEstudiante = codigoEstudiante;
@@ -45,6 +47,13 @@ public class Estudiante  implements java.io.Serializable {
     
     public void setIdEstudiante(Integer idEstudiante) {
         this.idEstudiante = idEstudiante;
+    }
+    public CicloEscolar getCicloEscolar() {
+        return this.cicloEscolar;
+    }
+    
+    public void setCicloEscolar(CicloEscolar cicloEscolar) {
+        this.cicloEscolar = cicloEscolar;
     }
     public Seccion getSeccion() {
         return this.seccion;
@@ -81,18 +90,18 @@ public class Estudiante  implements java.io.Serializable {
     public void setBorradoLogico(Boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
-    public Set<Notas> getNotases() {
+    public Set getNotases() {
         return this.notases;
     }
     
-    public void setNotases(Set<Notas> notases) {
+    public void setNotases(Set notases) {
         this.notases = notases;
     }
-    public Set<HistorialGraduacion> getHistorialGraduacions() {
+    public Set getHistorialGraduacions() {
         return this.historialGraduacions;
     }
     
-    public void setHistorialGraduacions(Set<HistorialGraduacion> historialGraduacions) {
+    public void setHistorialGraduacions(Set historialGraduacions) {
         this.historialGraduacions = historialGraduacions;
     }
 

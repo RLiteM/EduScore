@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 29-sep-2024 19:19:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOs.CicloEscolar" table="ciclo_escolar" catalog="escuelaguate" optimistic-lock="version">
         <id name="idCiclo" type="java.lang.Integer">
@@ -25,6 +25,18 @@
                 <column name="id_ciclo" />
             </key>
             <one-to-many class="POJOs.Grado" />
+        </set>
+        <set name="historialGraduacions" table="historial_graduacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_ciclo" />
+            </key>
+            <one-to-many class="POJOs.HistorialGraduacion" />
+        </set>
+        <set name="estudiantes" table="estudiante" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_ciclo" />
+            </key>
+            <one-to-many class="POJOs.Estudiante" />
         </set>
     </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
+// Generated 29-sep-2024 19:19:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,12 +12,13 @@ public class Docente  implements java.io.Serializable {
 
 
      private Integer idDocente;
+     private Escuela escuela;
      private String codigoPersonal;
      private long cui;
      private String contrasenia;
      private Boolean borradoLogico;
-     private Set<AsignacionDocenteCurso> asignacionDocenteCursos = new HashSet<AsignacionDocenteCurso>(0);
-     private Set<AsignacionDocenteEscuela> asignacionDocenteEscuelas = new HashSet<AsignacionDocenteEscuela>(0);
+     private Set asignacionDocenteCursos = new HashSet(0);
+     private Set asignacionDocenteEscuelas = new HashSet(0);
 
     public Docente() {
     }
@@ -28,7 +29,8 @@ public class Docente  implements java.io.Serializable {
         this.cui = cui;
         this.contrasenia = contrasenia;
     }
-    public Docente(String codigoPersonal, long cui, String contrasenia, Boolean borradoLogico, Set<AsignacionDocenteCurso> asignacionDocenteCursos, Set<AsignacionDocenteEscuela> asignacionDocenteEscuelas) {
+    public Docente(Escuela escuela, String codigoPersonal, long cui, String contrasenia, Boolean borradoLogico, Set asignacionDocenteCursos, Set asignacionDocenteEscuelas) {
+       this.escuela = escuela;
        this.codigoPersonal = codigoPersonal;
        this.cui = cui;
        this.contrasenia = contrasenia;
@@ -43,6 +45,13 @@ public class Docente  implements java.io.Serializable {
     
     public void setIdDocente(Integer idDocente) {
         this.idDocente = idDocente;
+    }
+    public Escuela getEscuela() {
+        return this.escuela;
+    }
+    
+    public void setEscuela(Escuela escuela) {
+        this.escuela = escuela;
     }
     public String getCodigoPersonal() {
         return this.codigoPersonal;
@@ -72,18 +81,18 @@ public class Docente  implements java.io.Serializable {
     public void setBorradoLogico(Boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
-    public Set<AsignacionDocenteCurso> getAsignacionDocenteCursos() {
+    public Set getAsignacionDocenteCursos() {
         return this.asignacionDocenteCursos;
     }
     
-    public void setAsignacionDocenteCursos(Set<AsignacionDocenteCurso> asignacionDocenteCursos) {
+    public void setAsignacionDocenteCursos(Set asignacionDocenteCursos) {
         this.asignacionDocenteCursos = asignacionDocenteCursos;
     }
-    public Set<AsignacionDocenteEscuela> getAsignacionDocenteEscuelas() {
+    public Set getAsignacionDocenteEscuelas() {
         return this.asignacionDocenteEscuelas;
     }
     
-    public void setAsignacionDocenteEscuelas(Set<AsignacionDocenteEscuela> asignacionDocenteEscuelas) {
+    public void setAsignacionDocenteEscuelas(Set asignacionDocenteEscuelas) {
         this.asignacionDocenteEscuelas = asignacionDocenteEscuelas;
     }
 

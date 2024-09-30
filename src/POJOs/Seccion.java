@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
+// Generated 29-sep-2024 19:19:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,8 +15,8 @@ public class Seccion  implements java.io.Serializable {
      private Grado grado;
      private String nombreSeccion;
      private Boolean borradoLogico;
-     private Set<AsignacionDocenteCurso> asignacionDocenteCursos = new HashSet<AsignacionDocenteCurso>(0);
-     private Set<Estudiante> estudiantes = new HashSet<Estudiante>(0);
+     private Set asignacionDocenteCursos = new HashSet(0);
+     private Set estudiantes = new HashSet(0);
 
     public Seccion() {
     }
@@ -25,7 +25,7 @@ public class Seccion  implements java.io.Serializable {
     public Seccion(String nombreSeccion) {
         this.nombreSeccion = nombreSeccion;
     }
-    public Seccion(Grado grado, String nombreSeccion, Boolean borradoLogico, Set<AsignacionDocenteCurso> asignacionDocenteCursos, Set<Estudiante> estudiantes) {
+    public Seccion(Grado grado, String nombreSeccion, Boolean borradoLogico, Set asignacionDocenteCursos, Set estudiantes) {
        this.grado = grado;
        this.nombreSeccion = nombreSeccion;
        this.borradoLogico = borradoLogico;
@@ -61,18 +61,18 @@ public class Seccion  implements java.io.Serializable {
     public void setBorradoLogico(Boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
-    public Set<AsignacionDocenteCurso> getAsignacionDocenteCursos() {
+    public Set getAsignacionDocenteCursos() {
         return this.asignacionDocenteCursos;
     }
     
-    public void setAsignacionDocenteCursos(Set<AsignacionDocenteCurso> asignacionDocenteCursos) {
+    public void setAsignacionDocenteCursos(Set asignacionDocenteCursos) {
         this.asignacionDocenteCursos = asignacionDocenteCursos;
     }
-    public Set<Estudiante> getEstudiantes() {
+    public Set getEstudiantes() {
         return this.estudiantes;
     }
     
-    public void setEstudiantes(Set<Estudiante> estudiantes) {
+    public void setEstudiantes(Set estudiantes) {
         this.estudiantes = estudiantes;
     }
 

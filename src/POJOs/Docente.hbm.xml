@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 29-sep-2024 19:19:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOs.Docente" table="docente" catalog="escuelaguate" optimistic-lock="version">
         <id name="idDocente" type="java.lang.Integer">
             <column name="id_docente" />
             <generator class="identity" />
         </id>
+        <many-to-one name="escuela" class="POJOs.Escuela" fetch="select">
+            <column name="codigo_escuela" length="50" />
+        </many-to-one>
         <property name="codigoPersonal" type="string">
             <column name="codigo_personal" length="50" not-null="true" unique="true" />
         </property>

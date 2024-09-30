@@ -46,19 +46,20 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/escuelaguate?serverTimezone=UTC</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">Guayaba426@</property>
-    <mapping resource="POJOs/AsignacionDocenteEscuela.hbm.xml"/>
-    <mapping resource="POJOs/Director.hbm.xml"/>
-    <mapping resource="POJOs/Escuela.hbm.xml"/>
-    <mapping resource="POJOs/Notas.hbm.xml"/>
-    <mapping resource="POJOs/AsignacionDocenteCurso.hbm.xml"/>
-    <mapping resource="POJOs/Administrador.hbm.xml"/>
-    <mapping resource="POJOs/Docente.hbm.xml"/>
-    <mapping resource="POJOs/CicloEscolar.hbm.xml"/>
-    <mapping resource="POJOs/Curso.hbm.xml"/>
+    <property name="hibernate.current_session_context_class">thread</property>
     <mapping resource="POJOs/Estudiante.hbm.xml"/>
-    <mapping resource="POJOs/Seccion.hbm.xml"/>
-    <mapping resource="POJOs/Actividad.hbm.xml"/>
-    <mapping resource="POJOs/HistorialGraduacion.hbm.xml"/>
+    <mapping resource="POJOs/Docente.hbm.xml"/>
+    <mapping resource="POJOs/Administrador.hbm.xml"/>
+    <mapping resource="POJOs/AsignacionDocenteCurso.hbm.xml"/>
+    <mapping resource="POJOs/AsignacionDocenteEscuela.hbm.xml"/>
+    <mapping resource="POJOs/CicloEscolar.hbm.xml"/>
+    <mapping resource="POJOs/Escuela.hbm.xml"/>
+    <mapping resource="POJOs/Director.hbm.xml"/>
+    <mapping resource="POJOs/Curso.hbm.xml"/>
     <mapping resource="POJOs/Grado.hbm.xml"/>
+    <mapping resource="POJOs/Actividad.hbm.xml"/>
+    <mapping resource="POJOs/Seccion.hbm.xml"/>
+    <mapping resource="POJOs/Notas.hbm.xml"/>
+    <mapping resource="POJOs/HistorialGraduacion.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
+// Generated 29-sep-2024 19:19:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,7 +16,9 @@ public class CicloEscolar  implements java.io.Serializable {
      private int anio;
      private String estado;
      private Boolean borradoLogico;
-     private Set<Grado> grados = new HashSet<Grado>(0);
+     private Set grados = new HashSet(0);
+     private Set historialGraduacions = new HashSet(0);
+     private Set estudiantes = new HashSet(0);
 
     public CicloEscolar() {
     }
@@ -25,12 +27,14 @@ public class CicloEscolar  implements java.io.Serializable {
     public CicloEscolar(int anio) {
         this.anio = anio;
     }
-    public CicloEscolar(Escuela escuela, int anio, String estado, Boolean borradoLogico, Set<Grado> grados) {
+    public CicloEscolar(Escuela escuela, int anio, String estado, Boolean borradoLogico, Set grados, Set historialGraduacions, Set estudiantes) {
        this.escuela = escuela;
        this.anio = anio;
        this.estado = estado;
        this.borradoLogico = borradoLogico;
        this.grados = grados;
+       this.historialGraduacions = historialGraduacions;
+       this.estudiantes = estudiantes;
     }
    
     public Integer getIdCiclo() {
@@ -68,12 +72,26 @@ public class CicloEscolar  implements java.io.Serializable {
     public void setBorradoLogico(Boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
-    public Set<Grado> getGrados() {
+    public Set getGrados() {
         return this.grados;
     }
     
-    public void setGrados(Set<Grado> grados) {
+    public void setGrados(Set grados) {
         this.grados = grados;
+    }
+    public Set getHistorialGraduacions() {
+        return this.historialGraduacions;
+    }
+    
+    public void setHistorialGraduacions(Set historialGraduacions) {
+        this.historialGraduacions = historialGraduacions;
+    }
+    public Set getEstudiantes() {
+        return this.estudiantes;
+    }
+    
+    public void setEstudiantes(Set estudiantes) {
+        this.estudiantes = estudiantes;
     }
 
 

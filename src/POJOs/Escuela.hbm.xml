@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 29-sep-2024 19:19:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJOs.Escuela" table="escuela" catalog="escuelaguate" optimistic-lock="version">
         <id name="codigoEscuela" type="string">
@@ -20,11 +20,23 @@
         <property name="borradoLogico" type="java.lang.Boolean">
             <column name="borrado_logico" />
         </property>
+        <set name="grados" table="grado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_escuela" length="50" />
+            </key>
+            <one-to-many class="POJOs.Grado" />
+        </set>
         <set name="cicloEscolars" table="ciclo_escolar" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="codigo_escuela" length="50" />
             </key>
             <one-to-many class="POJOs.CicloEscolar" />
+        </set>
+        <set name="docentes" table="docente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_escuela" length="50" />
+            </key>
+            <one-to-many class="POJOs.Docente" />
         </set>
         <set name="directors" table="director" inverse="true" lazy="true" fetch="select">
             <key>

@@ -1,5 +1,5 @@
 package POJOs;
-// Generated 23/09/2024 12:41:05 PM by Hibernate Tools 4.3.1
+// Generated 29-sep-2024 19:19:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -18,7 +18,7 @@ public class Administrador  implements java.io.Serializable {
      private String telefono;
      private String contrasenia;
      private Boolean borradoLogico;
-     private Set<Escuela> escuelas = new HashSet<Escuela>(0);
+     private Set escuelas = new HashSet(0);
 
     public Administrador() {
     }
@@ -31,7 +31,7 @@ public class Administrador  implements java.io.Serializable {
         this.telefono = telefono;
         this.contrasenia = contrasenia;
     }
-    public Administrador(long cui, String nombre, String apellido, String telefono, String contrasenia, Boolean borradoLogico, Set<Escuela> escuelas) {
+    public Administrador(long cui, String nombre, String apellido, String telefono, String contrasenia, Boolean borradoLogico, Set escuelas) {
        this.cui = cui;
        this.nombre = nombre;
        this.apellido = apellido;
@@ -90,11 +90,11 @@ public class Administrador  implements java.io.Serializable {
     public void setBorradoLogico(Boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
-    public Set<Escuela> getEscuelas() {
+    public Set getEscuelas() {
         return this.escuelas;
     }
     
-    public void setEscuelas(Set<Escuela> escuelas) {
+    public void setEscuelas(Set escuelas) {
         this.escuelas = escuelas;
     }
 
